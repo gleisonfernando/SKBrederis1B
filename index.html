@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK Brederis — Cartilha Oficial / Offizielles Spielerhandbuch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--primary:#1a1a2e;--secondary:#16213e;--accent:#e94560;--green:#0f9b58;--gold:#f5a623;--text:#eaeaea;--text-sec:#9a9a9a;--yellow:#f5a623;--orange:#e67e22;--red-dark:#c0392b;--black-red:#2c0b0e;--card-bg:rgba(22,33,62,0.7);--card-border:rgba(255,255,255,0.06)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Barlow','Trebuchet MS',sans-serif;background:var(--primary);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh}
+    body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle at 20% 50%,rgba(233,69,96,0.03) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(15,155,88,0.03) 0%,transparent 50%),radial-gradient(circle at 50% 80%,rgba(245,166,35,0.02) 0%,transparent 50%);pointer-events:none;z-index:0}
+    h1,h2,h3,h4{font-family:'Bebas Neue','Impact',sans-serif;letter-spacing:1px}
+    header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,backdrop-filter .3s,box-shadow .3s}
+    header.scrolled{background:rgba(26,26,46,0.95);backdrop-filter:blur(12px);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+    .header-left{display:flex;flex-direction:column}
+    .logo{font-family:'Bebas Neue','Impact',sans-serif;font-size:2rem;color:var(--text);letter-spacing:3px;line-height:1}
+    .sub-logo{font-size:.75rem;color:var(--text-sec);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+    .lang-switch{display:flex;gap:4px;background:var(--secondary);border-radius:8px;padding:3px;border:1px solid var(--card-border)}
+    .lang-btn{padding:6px 14px;border:none;border-radius:6px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;font-size:.8rem;background:transparent;color:var(--text-sec);transition:all .2s}
+    .lang-btn.active{background:var(--accent);color:#fff}
+    .lang-btn:hover:not(.active){color:var(--text)}
+    #hero{position:relative;padding:140px 24px 80px;text-align:center;overflow:hidden}
+    #hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);pointer-events:none}
+    .hero-title{font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--text);letter-spacing:2px;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
+    .hero-sub{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--text-sec);font-weight:500;max-width:700px;margin:0 auto 20px}
+    #tabs{position:sticky;top:64px;z-index:900;background:rgba(26,26,46,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--card-border);padding:0 16px}
+    .tabs-container{display:flex;gap:8px;max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:12px 0}
+    .tabs-container::-webkit-scrollbar{display:none}
+    .tab-btn{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;background:transparent;color:var(--text-sec);font-family:'Barlow',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .25s;white-space:nowrap;border:1px solid transparent}
+    .tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.04)}
+    .tab-btn.active{background:var(--secondary);color:var(--accent);border-color:rgba(233,69,96,0.3)}
+    .tab-btn .icon{font-size:1.1rem}
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;background:none;border:none}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+    main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 20px 60px}
+    .tab-content{display:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease}
+    .tab-content.active{display:block;opacity:1;transform:translateY(0)}
+    .section-header{text-align:center;margin:40px 0 30px}
+    .section-header h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--text);margin-bottom:8px}
+    .section-header p{color:var(--text-sec);font-size:.95rem;max-width:600px;margin:0 auto}
+    .card-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+    .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:22px;backdrop-filter:blur(4px);transition:transform .2s,box-shadow .2s,border-color .2s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.25);border-color:rgba(233,69,96,0.15)}
+    .card h3{font-size:1.3rem;color:var(--accent);margin-bottom:10px}
+    .card h4{font-size:1.1rem;color:var(--text);margin-bottom:8px}
+    .card p,.card li{color:var(--text-sec);font-size:.9rem}
+    .card ul{list-style:none;padding:0}
+    .card li{padding:4px 0;display:flex;justify-content:space-between;align-items:center}
+    .card li:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.04)}
+    .badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);transition:transform .2s,box-shadow .2s}
+    .card:hover .badge{transform:scale(1.08);box-shadow:0 0 12px rgba(233,69,96,0.4)}
+    .badge-green{background:var(--green)}
+    .card:hover .badge-green{box-shadow:0 0 12px rgba(15,155,88,0.4)}
+    .badge-gold{background:var(--gold);color:#1a1a2e}
+    .card:hover .badge-gold{box-shadow:0 0 12px rgba(245,166,35,0.4)}
+    .card-featured{background:linear-gradient(135deg,rgba(233,69,96,0.08),rgba(22,33,62,0.9));border-color:rgba(233,69,96,0.2)}
+    .card-gold{background:linear-gradient(135deg,rgba(245,166,35,0.08),rgba(22,33,62,0.9));border-color:rgba(245,166,35,0.25)}
+    .card-green{background:linear-gradient(135deg,rgba(15,155,88,0.08),rgba(22,33,62,0.9));border-color:rgba(15,155,88,0.2)}
+    .card-dark{background:linear-gradient(135deg,rgba(0,0,0,0.3),rgba(22,33,62,0.9));border-color:rgba(255,255,255,0.08)}
+    .card-quote{font-style:italic;font-size:1.05rem;color:var(--text);text-align:center;padding:28px}
+    .timeline{position:relative;padding-left:30px}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--green),var(--yellow),var(--orange),var(--red-dark),var(--black-red))}
+    .timeline-item{position:relative;margin-bottom:20px;padding-left:20px}
+    .timeline-item::before{content:'';position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;border:3px solid var(--primary)}
+    .timeline-item:nth-child(1)::before{background:var(--green)}
+    .timeline-item:nth-child(2)::before{background:var(--yellow)}
+    .timeline-item:nth-child(3)::before{background:var(--orange)}
+    .timeline-item:nth-child(4)::before{background:var(--red-dark)}
+    .timeline-item:nth-child(5)::before{background:var(--black-red);box-shadow:0 0 8px var(--accent)}
+    .timeline-item h4{color:var(--text);font-size:1.1rem;margin-bottom:4px}
+    .timeline-item p{color:var(--text-sec);font-size:.88rem}
+    .timeline-level{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.7rem;font-weight:700;text-transform:uppercase;margin-bottom:6px}
+    .tl-1{background:rgba(15,155,88,0.2);color:var(--green)}
+    .tl-2{background:rgba(245,166,35,0.2);color:var(--yellow)}
+    .tl-3{background:rgba(230,126,34,0.2);color:var(--orange)}
+    .tl-4{background:rgba(192,57,43,0.2);color:#e74c3c}
+    .tl-5{background:rgba(44,11,14,0.5);color:var(--accent);border:1px solid var(--accent)}
+    .avatar-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+    .avatar-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:50px;border:1px solid var(--card-border)}
+    .avatar-circle{width:36px;height:36px;border-radius:50%;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:1rem;border:2px solid var(--accent)}
+    .avatar-name{font-size:.85rem;font-weight:600;color:var(--text)}
+    .avatar-role{font-size:.75rem;color:var(--text-sec)}
+    .checklist{list-style:none;padding:0}
+    .checklist li{padding:8px 0;display:flex;align-items:flex-start;gap:10px;color:var(--text-sec);font-size:.9rem}
+    .checklist li::before{content:'✓';color:var(--green);font-weight:700;font-size:1rem;flex-shrink:0}
+    .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .goal-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:22px}
+    .goal-card h4{color:var(--accent);font-size:1.2rem;margin-bottom:12px}
+    .goal-card ul{list-style:none;padding:0}
+    .goal-card li{padding:6px 0;color:var(--text-sec);font-size:.9rem;display:flex;align-items:center;gap:8px}
+    .goal-card li::before{content:'▸';color:var(--accent);font-weight:700}
+    footer{text-align:center;padding:40px 20px;border-top:1px solid var(--card-border);color:var(--text-sec);font-size:.85rem}
+    @media(max-width:600px){.goals-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){.logo{font-size:1.6rem}.sub-logo{font-size:.65rem}.hamburger{display:flex}.tabs-container{position:fixed;top:64px;left:0;right:0;flex-direction:column;background:rgba(26,26,46,0.98);padding:16px;gap:6px;transform:translateY(-150%);transition:transform .3s ease;border-bottom:1px solid var(--card-border);max-height:calc(100vh - 64px);overflow-y:auto}.tabs-container.open{transform:translateY(0)}.tab-btn{width:100%;justify-content:flex-start;padding:12px 16px}#hero{padding:120px 20px 60px}.card-grid{grid-template-columns:1fr}.goals-grid{grid-template-columns:1fr}}
+    @media(min-width:769px) and (max-width:1024px){.card-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1025px){.card-grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-left">
+    <div class="logo">SK BREDERIS</div>
+    <div class="sub-logo" data-key="sub_logo">4. Landesklasse Vorarlberg · 2026/2027</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="pt" onclick="setLang('pt')">🇧🇷 PT</button>
+      <button class="lang-btn" data-lang="de" onclick="setLang('de')">🇦🇹 DE</button>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <h1 class="hero-title" data-key="hero_title">Disciplinados nos treinos. Unidos nos jogos. Fortes como equipe.</h1>
+  <p class="hero-sub" data-key="hero_sub">Respeito + Disciplina + Compromisso = Sucesso</p>
+</section>
+
+<nav id="tabs">
+  <div class="tabs-container" id="tabsContainer">
+    <button class="tab-btn active" data-tab="valores" onclick="switchTab('valores')"><span class="icon">⚽</span><span data-key="tab_valores">Valores</span></button>
+    <button class="tab-btn" data-tab="regras" onclick="switchTab('regras')"><span class="icon">📋</span><span data-key="tab_regras">Regras & Multas</span></button>
+    <button class="tab-btn" data-tab="disciplina" onclick="switchTab('disciplina')"><span class="icon">🚨</span><span data-key="tab_disciplina">Disciplina</span></button>
+    <button class="tab-btn" data-tab="grupo" onclick="switchTab('grupo')"><span class="icon">🤝</span><span data-key="tab_grupo">Grupo</span></button>
+    <button class="tab-btn" data-tab="objetivos" onclick="switchTab('objetivos')"><span class="icon">🎯</span><span data-key="tab_objetivos">Objetivos</span></button>
+  </div>
+</nav>
+
+<main>
+
+<!-- SEÇÃO 1: VALORES -->
+<section id="valores" class="tab-content active">
+  <div class="section-header">
+    <h2 data-key="sec1_title">⚽ Valores</h2>
+    <p data-key="sec1_desc">Os princípios que guiam cada jogador do SK Brederis.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card"><h3 data-key="v1_title">Respeito</h3><p data-key="v1_desc">Respeitar colegas, adversários, árbitros e a instituição em todos os momentos.</p></div>
+    <div class="card"><h3 data-key="v2_title">Disciplina</h3><p data-key="v2_desc">Cumprir horários, regras e compromissos com rigor e consistência.</p></div>
+    <div class="card"><h3 data-key="v3_title">Comprometimento</h3><p data-key="v3_desc">Dedicar-se totalmente aos treinos, jogos e ao bem-estar da equipe.</p></div>
+    <div class="card"><h3 data-key="v4_title">Humildade</h3><p data-key="v4_desc">Reconhecer erros, aceitar críticas construtivas e nunca achar-se acima dos outros.</p></div>
+    <div class="card"><h3 data-key="v5_title">Espírito de Equipe</h3><p data-key="v5_desc">A união faz a força. Jogamos juntos, vencemos juntos, perdemos juntos.</p></div>
+    <div class="card"><h3 data-key="v6_title">Responsabilidade</h3><p data-key="v6_desc">Cada um é responsável por suas ações dentro e fora de campo.</p></div>
+    <div class="card"><h3 data-key="v7_title">Mentalidade Vencedora</h3><p data-key="v7_desc">Acreditar na vitória, trabalhar para conquistá-la e nunca desistir.</p></div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card card-featured" style="grid-column:1/-1;">
+      <h3 data-key="fundamental_title">Princípio Fundamental</h3>
+      <p class="card-quote" style="text-align:left;padding:0;" data-key="fundamental_text">"Nenhum jogador é maior que a equipe." — Comprometimento, disciplina e respeito são obrigatórios para vestir a camisa do SK Brederis.</p>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card">
+      <h4 data-key="first_title">Primeiro a chegar</h4>
+      <p data-key="first_desc">Ajuda a preparar material, organizar o campo e montar os exercícios. A liderança começa pelo exemplo.</p>
+    </div>
+    <div class="card">
+      <h4 data-key="last_title">Último a sair</h4>
+      <p data-key="last_desc">Ninguém sai antes de recolher material, guardar bolas e verificar que o vestiário está limpo.</p>
+    </div>
+    <div class="card">
+      <h4 data-key="lead_title">Liderança</h4>
+      <p data-key="lead_desc">Todos são líderes pelo exemplo: chegar cedo, trabalhar duro, incentivar colegas e assumir responsabilidades.</p>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card card-gold" style="grid-column:1/-1;">
+      <h3 style="color:var(--gold);" data-key="golden_title">🔑 Regra de Ouro</h3>
+      <p class="card-quote" style="text-align:center;padding:10px 0 0;" data-key="golden_text">"Isso ajuda a equipe a crescer? Se não — não faça."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 2: REGRAS & MULTAS -->
+<section id="regras" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec2_title">📋 Regras & Multas</h2>
+    <p data-key="sec2_desc">Conheça as regras do clube e as consequências de seu descumprimento.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <h3 data-key="r1_title">Pontualidade</h3>
+      <p data-key="r1_desc">Chegue 10 minutos antes do treino e dos jogos.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r1_i1">Até 10 min de atraso</span> <span class="badge">€2</span></li>
+        <li><span data-key="r1_i2">Mais de 10 min</span> <span class="badge">€3</span></li>
+        <li><span data-key="r1_i3">Sem aviso prévio</span> <span class="badge">€5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r2_title">Bolas e Material</h3>
+      <p data-key="r2_desc">As bolas são patrimônio do clube. Todos ajudam a montar e recolher.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r2_i1">Não recolher bolas</span> <span class="badge">€2</span></li>
+        <li><span data-key="r2_i2">Material espalhado</span> <span class="badge">€2</span></li>
+        <li><span data-key="r2_i3">Chutar sem autorização pós-treino</span> <span class="badge">€1</span></li>
+        <li><span data-key="r2_i4">Danificar bola por negligência</span> <span class="badge">€5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r3_title">Vestiário</h3>
+      <p data-key="r3_desc">Manter limpo e organizado. Chuteiras limpas ao entrar.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r3_i1">Entrar com chuteiras sujas</span> <span class="badge">€2</span></li>
+        <li><span data-key="r3_i2">Deixar lixo</span> <span class="badge">€2</span></li>
+        <li><span data-key="r3_i3">Roupas ou fitas espalhadas</span> <span class="badge">€1</span></li>
+        <li><span data-key="r3_i4">Banho e local sujo</span> <span class="badge">€2</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r4_title">Substituições</h3>
+      <p data-key="r4_desc">Ao sair do campo: cumprimentar o colega que entra e a comissão técnica.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r4_i1">Não cumprimentar colega</span> <span class="badge">€2</span></li>
+        <li><span data-key="r4_i2">Não cumprimentar treinador</span> <span class="badge">€2</span></li>
+        <li><span data-key="r4_i3">Ir ao vestiário sem autorização</span> <span class="badge">€5</span></li>
+        <li><span data-key="r4_i4">3ª vez: afastamento</span> <span class="badge" style="background:#c0392b;" data-key="suspensao">SUSPENSÃO</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r5_title">Banco de Reservas</h3>
+      <p data-key="r5_desc">Todos permanecem envolvidos no jogo. Celular fora durante a partida.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r5_i1">Uso excessivo do celular</span> <span class="badge">€2</span></li>
+        <li><span data-key="r5_i2">Falta de atenção</span> <span class="badge">€2</span></li>
+        <li><span data-key="r5_i3">Comportamento negativo</span> <span class="badge">€3</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r6_title">Árbitros e Adversários</h3>
+      <p data-key="r6_desc">O SK Brederis respeita o futebol e todos os envolvidos.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r6_i1">Reclamação desnecessária</span> <span class="badge">€2</span></li>
+        <li><span data-key="r6_i2">Insultar adversários</span> <span class="badge">€5</span></li>
+        <li><span data-key="r6_i3">Cartão por reclamação</span> <span class="badge">€3</span></li>
+        <li><span data-key="r6_i4">Cartão vermelho antidesportivo</span> <span class="badge">€5</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r7_title">Redes Sociais</h3>
+      <p data-key="r7_desc">Nenhum jogador pode prejudicar a imagem do clube online.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r7_i1">Post ofensivo sobre colegas</span> <span class="badge">€5</span></li>
+        <li><span data-key="r7_i2">Post ofensivo sobre o clube</span> <span class="badge">€5</span></li>
+        <li><span data-key="r7_i3">3ª vez: afastamento</span> <span class="badge" style="background:#c0392b;" data-key="suspensao">SUSPENSÃO</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 data-key="r8_title">Jogos e Convocações</h3>
+      <p data-key="r8_desc">Confirmar presença dentro do prazo estabelecido.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r8_i1">Não responder convocação</span> <span class="badge">€2</span></li>
+        <li><span data-key="r8_i2">Falta sem justificativa</span> <span class="badge">€5</span></li>
+        <li><span data-key="r8_i3">Atraso no ponto de encontro</span> <span class="badge">€5</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card card-green" style="grid-column:1/-1;">
+      <h3 style="color:var(--green);" data-key="kasse_title">💰 Caixa da Equipe</h3>
+      <p data-key="kasse_desc">Todo o valor das multas vai para o <strong>Caixa da Equipe</strong> para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 3: DISCIPLINA -->
+<section id="disciplina" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec3_title">🚨 Disciplina</h2>
+    <p data-key="sec3_desc">Níveis disciplinares e consequências por infrações.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-level tl-1" data-key="d1_level">Nível 1 / Stufe 1</span>
+      <h4 data-key="d1_title">Advertência Verbal</h4>
+      <p data-key="d1_desc">Para casos leves ou primeira ocorrência.</p>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-level tl-2" data-key="d2_level">Nível 2 / Stufe 2</span>
+      <h4 data-key="d2_title">Advertência Formal</h4>
+      <p data-key="d2_desc">Registro interno junto à comissão técnica e ao capitão.</p>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-level tl-3" data-key="d3_level">Nível 3 / Stufe 3</span>
+      <h4 data-key="d3_title">Afastamento de 1 Jogo</h4>
+      <p data-key="d3_desc">Falta de respeito, discussões graves ou acúmulo de infrações.</p>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-level tl-4" data-key="d4_level">Nível 4 / Stufe 4</span>
+      <h4 data-key="d4_title">Afastamento Temporário (1–4 semanas)</h4>
+      <p data-key="d4_desc">Insultos graves, comportamento agressivo, prejuízo ao grupo.</p>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-level tl-5" data-key="d5_level">Nível 5 / Stufe 5</span>
+      <h4 data-key="d5_title">Exclusão do Elenco</h4>
+      <p data-key="d5_desc">Agressão física, racismo, discriminação, ameaças.</p>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:30px;">
+    <div class="card card-featured" style="grid-column:1/-1;">
+      <h3 data-key="rule3_title">Regra das 3 Advertências</h3>
+      <ul style="margin-top:10px;">
+        <li><span data-key="rule3_i1">3 advertências formais → Suspensão de 1 jogo</span> <span class="badge" data-key="badge_1spiel">1 Spiel</span></li>
+        <li><span data-key="rule3_i2">5 advertências formais → Reunião disciplinar</span> <span class="badge" data-key="badge_sitzung">Sitzung</span></li>
+        <li><span data-key="rule3_i3">7 advertências formais → Possível afastamento</span> <span class="badge" style="background:#c0392b;" data-key="badge_ausschluss">Ausschluss</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card card-dark" style="grid-column:1/-1;">
+      <p class="card-quote" data-key="quote_training">"Treinou mal, joga menos. Treinou bem, joga mais." — A titularidade é conquistada por presença, atitude, disciplina e rendimento — não por nome ou amizade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 4: GRUPO -->
+<section id="grupo" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec4_title">🤝 Grupo</h2>
+    <p data-key="sec4_desc">A estrutura e a cultura que mantêm o SK Brederis unido.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card" style="grid-column:1/-1;">
+      <h3 data-key="council_title">Conselho da Equipe</h3>
+      <div class="avatar-list">
+        <div class="avatar-item"><div class="avatar-circle">👤</div><div><div class="avatar-name" data-key="role_coach">Treinador Principal</div></div></div>
+        <div class="avatar-item"><div class="avatar-circle">©️</div><div><div class="avatar-name" data-key="role_captain">Capitão</div></div></div>
+        <div class="avatar-item"><div class="avatar-circle">🥈</div><div><div class="avatar-name" data-key="role_vice">Vice-Capitão</div></div></div>
+        <div class="avatar-item"><div class="avatar-circle">🗳️</div><div><div class="avatar-name" data-key="role_elected">2 Jogadores Eleitos</div></div></div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--card-border);">
+        <h4 style="font-size:1rem;margin-bottom:8px;" data-key="council_tasks_title">Funções do Conselho:</h4>
+        <ul class="checklist">
+          <li data-key="council_t1">Representar os interesses da equipe</li>
+          <li data-key="council_t2">Resolver conflitos</li>
+          <li data-key="council_t3">Promover a união</li>
+          <li data-key="council_t4">Avaliar situações disciplinares</li>
+          <li data-key="council_t5">Administrar a Mannschaftskasse</li>
+          <li data-key="council_t6">Organizar atividades de integração</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-key="locker_title">Cultura do Vestiário</h3>
+      <p data-key="locker_desc">O vestiário deve ser unido, positivo, respeitoso e organizado. Não são tolerados: panelinhas, fofoca, intrigas ou falta de respeito.</p>
+    </div>
+    <div class="card">
+      <h3 data-key="family_title">Espírito de Família</h3>
+      <p data-key="family_desc">Quando um colega erra — ajudamos. Quando está em dificuldade — apoiamos. Quando tem sucesso — celebramos juntos.</p>
+    </div>
+    <div class="card" style="grid-column:1/-1;">
+      <h3 data-key="honor_title">Código de Honra</h3>
+      <ul class="checklist">
+        <li data-key="honor_1">Respeitar colegas, adversários e árbitros</li>
+        <li data-key="honor_2">Respeitar a comissão técnica e o clube</li>
+        <li data-key="honor_3">Colocar a equipe acima dos interesses pessoais</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 5: OBJETIVOS -->
+<section id="objetivos" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec5_title">🎯 Objetivos</h2>
+    <p data-key="sec5_desc">O que buscamos alcançar como equipe e como indivíduos.</p>
+  </div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <h4 data-key="goal_team_title">Como Equipe</h4>
+      <ul>
+        <li data-key="goal_t1">Melhor defesa da liga</li>
+        <li data-key="goal_t2">Melhor ambiente de grupo</li>
+        <li data-key="goal_t3">Maior presença nos treinos</li>
+        <li data-key="goal_t4">Desenvolver jogadores jovens</li>
+        <li data-key="goal_t5">Lutar pela promoção</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <h4 data-key="goal_player_title">Como Jogador</h4>
+      <ul>
+        <li data-key="goal_p1">Melhorar tecnicamente</li>
+        <li data-key="goal_p2">Melhorar fisicamente</li>
+        <li data-key="goal_p3">Melhorar mentalmente</li>
+        <li data-key="goal_p4">Ser exemplo para os colegas</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:16px;">
+    <div class="card">
+      <h3 data-key="mindset_title">Mentalidade de Jogo</h3>
+      <p data-key="mindset_desc">Entramos em campo para competir, lutar por cada bola, respeitar o adversário e nunca desistir. O esforço é obrigatório. O talento é um diferencial.</p>
+    </div>
+    <div class="card">
+      <h3 data-key="winner_title">Cultura de Vitória</h3>
+      <p data-key="winner_desc">Não procuramos desculpas. Não culpamos colegas nem árbitros. Após cada jogo: "O que eu poderia ter feito melhor para ajudar a equipe?"</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p data-key="footer">© 2026 SK Brederis · Uma Equipe. Uma Família. Um Objetivo.</p>
+</footer>
+
+<script>
+const i18n={
+  pt:{
+    sub_logo:"4. Landesklasse Vorarlberg · 2026/2027",
+    hero_title:"Disciplinados nos treinos. Unidos nos jogos. Fortes como equipe.",
+    hero_sub:"Respeito + Disciplina + Compromisso = Sucesso",
+    tab_valores:"Valores",tab_regras:"Regras & Multas",tab_disciplina:"Disciplina",tab_grupo:"Grupo",tab_objetivos:"Objetivos",
+    sec1_title:"⚽ Valores",sec1_desc:"Os princípios que guiam cada jogador do SK Brederis.",
+    v1_title:"Respeito",v1_desc:"Respeitar colegas, adversários, árbitros e a instituição em todos os momentos.",
+    v2_title:"Disciplina",v2_desc:"Cumprir horários, regras e compromissos com rigor e consistência.",
+    v3_title:"Comprometimento",v3_desc:"Dedicar-se totalmente aos treinos, jogos e ao bem-estar da equipe.",
+    v4_title:"Humildade",v4_desc:"Reconhecer erros, aceitar críticas construtivas e nunca achar-se acima dos outros.",
+    v5_title:"Espírito de Equipe",v5_desc:"A união faz a força. Jogamos juntos, vencemos juntos, perdemos juntos.",
+    v6_title:"Responsabilidade",v6_desc:"Cada um é responsável por suas ações dentro e fora de campo.",
+    v7_title:"Mentalidade Vencedora",v7_desc:"Acreditar na vitória, trabalhar para conquistá-la e nunca desistir.",
+    fundamental_title:"Princípio Fundamental",
+    fundamental_text:'"Nenhum jogador é maior que a equipe." — Comprometimento, disciplina e respeito são obrigatórios para vestir a camisa do SK Brederis.',
+    first_title:"Primeiro a chegar",first_desc:"Ajuda a preparar material, organizar o campo e montar os exercícios. A liderança começa pelo exemplo.",
+    last_title:"Último a sair",last_desc:"Ninguém sai antes de recolher material, guardar bolas e verificar que o vestiário está limpo.",
+    lead_title:"Liderança",lead_desc:"Todos são líderes pelo exemplo: chegar cedo, trabalhar duro, incentivar colegas e assumir responsabilidades.",
+    golden_title:"🔑 Regra de Ouro",golden_text:'"Isso ajuda a equipe a crescer? Se não — não faça."',
+    sec2_title:"📋 Regras & Multas",sec2_desc:"Conheça as regras do clube e as consequências de seu descumprimento.",
+    r1_title:"Pontualidade",r1_desc:"Chegue 10 minutos antes do treino e dos jogos.",
+    r1_i1:"Até 10 min de atraso",r1_i2:"Mais de 10 min",r1_i3:"Sem aviso prévio",
+    r2_title:"Bolas e Material",r2_desc:"As bolas são patrimônio do clube. Todos ajudam a montar e recolher.",
+    r2_i1:"Não recolher bolas",r2_i2:"Material espalhado",r2_i3:"Chutar sem autorização pós-treino",r2_i4:"Danificar bola por negligência",
+    r3_title:"Vestiário",r3_desc:"Manter limpo e organizado. Chuteiras limpas ao entrar.",
+    r3_i1:"Entrar com chuteiras sujas",r3_i2:"Deixar lixo",r3_i3:"Roupas ou fitas espalhadas",r3_i4:"Banho e local sujo",
+    r4_title:"Substituições",r4_desc:"Ao sair do campo: cumprimentar o colega que entra e a comissão técnica.",
+    r4_i1:"Não cumprimentar colega",r4_i2:"Não cumprimentar treinador",r4_i3:"Ir ao vestiário sem autorização",r4_i4:"3ª vez: afastamento",
+    r5_title:"Banco de Reservas",r5_desc:"Todos permanecem envolvidos no jogo. Celular fora durante a partida.",
+    r5_i1:"Uso excessivo do celular",r5_i2:"Falta de atenção",r5_i3:"Comportamento negativo",
+    r6_title:"Árbitros e Adversários",r6_desc:"O SK Brederis respeita o futebol e todos os envolvidos.",
+    r6_i1:"Reclamação desnecessária",r6_i2:"Insultar adversários",r6_i3:"Cartão por reclamação",r6_i4:"Cartão vermelho antidesportivo",
+    r7_title:"Redes Sociais",r7_desc:"Nenhum jogador pode prejudicar a imagem do clube online.",
+    r7_i1:"Post ofensivo sobre colegas",r7_i2:"Post ofensivo sobre o clube",r7_i3:"3ª vez: afastamento",
+    r8_title:"Jogos e Convocações",r8_desc:"Confirmar presença dentro do prazo estabelecido.",
+    r8_i1:"Não responder convocação",r8_i2:"Falta sem justificativa",r8_i3:"Atraso no ponto de encontro",
+    suspensao:"SUSPENSÃO",
+    kasse_title:"💰 Caixa da Equipe",
+    kasse_desc:"Todo o valor das multas vai para o Caixa da Equipe para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo",
+    sec3_title:"🚨 Disciplina",sec3_desc:"Níveis disciplinares e consequências por infrações.",
+    d1_level:"Nível 1 / Stufe 1",d1_title:"Advertência Verbal",d1_desc:"Para casos leves ou primeira ocorrência.",
+    d2_level:"Nível 2 / Stufe 2",d2_title:"Advertência Formal",d2_desc:"Registro interno junto à comissão técnica e ao capitão.",
+    d3_level:"Nível 3 / Stufe 3",d3_title:"Afastamento de 1 Jogo",d3_desc:"Falta de respeito, discussões graves ou acúmulo de infrações.",
+    d4_level:"Nível 4 / Stufe 4",d4_title:"Afastamento Temporário (1–4 semanas)",d4_desc:"Insultos graves, comportamento agressivo, prejuízo ao grupo.",
+    d5_level:"Nível 5 / Stufe 5",d5_title:"Exclusão do Elenco",d5_desc:"Agressão física, racismo, discriminação, ameaças.",
+    rule3_title:"Regra das 3 Advertências",
+    rule3_i1:"3 advertências formais → Suspensão de 1 jogo",rule3_i2:"5 advertências formais → Reunião disciplinar",rule3_i3:"7 advertências formais → Possível afastamento",
+    badge_1spiel:"1 Spiel",badge_sitzung:"Sitzung",badge_ausschluss:"Ausschluss",
+    quote_training:'"Treinou mal, joga menos. Treinou bem, joga mais." — A titularidade é conquistada por presença, atitude, disciplina e rendimento — não por nome ou amizade.',
+    sec4_title:"🤝 Grupo",sec4_desc:"A estrutura e a cultura que mantêm o SK Brederis unido.",
+    council_title:"Conselho da Equipe",
+    role_coach:"Treinador Principal",role_captain:"Capitão",role_vice:"Vice-Capitão",role_elected:"2 Jogadores Eleitos",
+    council_tasks_title:"Funções do Conselho:",
+    council_t1:"Representar os interesses da equipe",council_t2:"Resolver conflitos",council_t3:"Promover a união",
+    council_t4:"Avaliar situações disciplinares",council_t5:"Administrar a Mannschaftskasse",council_t6:"Organizar atividades de integração",
+    locker_title:"Cultura do Vestiário",locker_desc:"O vestiário deve ser unido, positivo, respeitoso e organizado. Não são tolerados: panelinhas, fofoca, intrigas ou falta de respeito.",
+    family_title:"Espírito de Família",family_desc:"Quando um colega erra — ajudamos. Quando está em dificuldade — apoiamos. Quando tem sucesso — celebramos juntos.",
+    honor_title:"Código de Honra",
+    honor_1:"Respeitar colegas, adversários e árbitros",honor_2:"Respeitar a comissão técnica e o clube",honor_3:"Colocar a equipe acima dos interesses pessoais",
+    sec5_title:"🎯 Objetivos",sec5_desc:"O que buscamos alcançar como equipe e como indivíduos.",
+    goal_team_title:"Como Equipe",goal_player_title:"Como Jogador",
+    goal_t1:"Melhor defesa da liga",goal_t2:"Melhor ambiente de grupo",goal_t3:"Maior presença nos treinos",goal_t4:"Desenvolver jogadores jovens",goal_t5:"Lutar pela promoção",
+    goal_p1:"Melhorar tecnicamente",goal_p2:"Melhorar fisicamente",goal_p3:"Melhorar mentalmente",goal_p4:"Ser exemplo para os colegas",
+    mindset_title:"Mentalidade de Jogo",mindset_desc:"Entramos em campo para competir, lutar por cada bola, respeitar o adversário e nunca desistir. O esforço é obrigatório. O talento é um diferencial.",
+    winner_title:"Cultura de Vitória",winner_desc:'Não procuramos desculpas. Não culpamos colegas nem árbitros. Após cada jogo: "O que eu poderia ter feito melhor para ajudar a equipe?"',
+    footer:"© 2026 SK Brederis · Uma Equipe. Uma Família. Um Objetivo."
+  },
+  de:{
+    sub_logo:"4. Landesklasse Vorarlberg · 2026/2027",
+    hero_title:"Diszipliniert im Training. Vereint im Spiel. Stark als Mannschaft.",
+    hero_sub:"Respekt + Disziplin + Engagement = Erfolg",
+    tab_valores:"Werte",tab_regras:"Regeln & Bußen",tab_disciplina:"Disziplin",tab_grupo:"Gruppe",tab_objetivos:"Ziele",
+    sec1_title:"⚽ Werte",sec1_desc:"Die Prinzipien, die jeden Spieler des SK Brederis leiten.",
+    v1_title:"Respekt",v1_desc:"Mitspieler, Gegner, Schiedsrichter und den Verein jederzeit respektieren.",
+    v2_title:"Disziplin",v2_desc:"Zeiten, Regeln und Verpflichtungen streng und konsequent einhalten.",
+    v3_title:"Engagement",v3_desc:"Sich voll und ganz dem Training, den Spielen und dem Wohlergehen der Mannschaft widmen.",
+    v4_title:"Bescheidenheit",v4_desc:"Fehler erkennen, konstruktive Kritik annehmen und sich nie über andere stellen.",
+    v5_title:"Mannschaftsgeist",v5_desc:"Einigkeit macht stark. Wir spielen zusammen, gewinnen zusammen, verlieren zusammen.",
+    v6_title:"Verantwortung",v6_desc:"Jeder ist für seine Handlungen innerhalb und außerhalb des Platzes verantwortlich.",
+    v7_title:"Siegermentalität",v7_desc:"An den Sieg glauben, dafür arbeiten und niemals aufgeben.",
+    fundamental_title:"Grundsatz",
+    fundamental_text:'"Kein Spieler ist größer als die Mannschaft." — Engagement, Disziplin und Respekt sind Pflicht, um das Trikot des SK Brederis zu tragen.',
+    first_title:"Erster vor Ort",first_desc:"Hilft beim Vorbereiten des Materials, Organisieren des Platzes und Aufbauen der Übungen. Führung beginnt mit gutem Beispiel.",
+    last_title:"Letzter geht",last_desc:"Niemand geht, bevor das Material eingesammelt, die Bälle verstaut und die Kabine sauber ist.",
+    lead_title:"Führung",lead_desc:"Alle sind Vorbilder: früh ankommen, hart arbeiten, Teamkollegen motivieren und Verantwortung übernehmen.",
+    golden_title:"🔑 Goldene Regel",golden_text:'"Hilft das der Mannschaft zu wachsen? Wenn nicht — tu es nicht."',
+    sec2_title:"📋 Regeln & Bußen",sec2_desc:"Lernen Sie die Vereinsregeln und die Folgen ihrer Nichteinhaltung kennen.",
+    r1_title:"Pünktlichkeit",r1_desc:"Erscheine 10 Minuten vor Training und Spiel.",
+    r1_i1:"Bis 10 Min. Verspätung",r1_i2:"Mehr als 10 Min.",r1_i3:"Ohne Vorankündigung",
+    r2_title:"Bälle & Material",r2_desc:"Bälle sind Vereinseigentum. Alle helfen beim Auf- und Abbau.",
+    r2_i1:"Bälle nicht einsammeln",r2_i2:"Material herumliegen lassen",r2_i3:"Ball treten ohne Erlaubnis nach Training",r2_i4:"Ball durch Fahrlässigkeit beschädigen",
+    r3_title:"Kabine",r3_desc:"Sauber und ordentlich halten. Saubere Schuhe beim Eintreten.",
+    r3_i1:"Mit schmutzigen Schuhen eintreten",r3_i2:"Müll hinterlassen",r3_i3:"Kleidung/Bandagen liegen lassen",r3_i4:"Duschen und Ort verschmutzen",
+    r4_title:"Auswechslungen",r4_desc:"Beim Verlassen des Platzes: Einwechselspieler und Trainerteam begrüßen.",
+    r4_i1:"Mitspieler nicht begrüßen",r4_i2:"Trainer nicht begrüßen",r4_i3:"Ohne Erlaubnis in Kabine gehen",r4_i4:"3. Mal: Ausschluss",
+    r5_title:"Ersatzbank",r5_desc:"Alle bleiben im Spielgeschehen involviert. Kein Handy während des Spiels.",
+    r5_i1:"Übermäßige Handynutzung",r5_i2:"Unaufmerksamkeit",r5_i3:"Negatives Verhalten",
+    r6_title:"Schiedsrichter & Gegner",r6_desc:"SK Brederis respektiert den Fußball und alle Beteiligten.",
+    r6_i1:"Unnötige Meckerei",r6_i2:"Gegner beleidigen",r6_i3:"Karte wegen Meckerei",r6_i4:"Rote Karte wegen Unsportlichkeit",
+    r7_title:"Soziale Medien",r7_desc:"Kein Spieler darf das Vereinsimage online schädigen.",
+    r7_i1:"Beleidigender Post über Mitspieler",r7_i2:"Beleidigender Post über den Verein",r7_i3:"3. Mal: Ausschluss",
+    r8_title:"Spiele & Einberufungen",r8_desc:"Teilnahme innerhalb der gesetzten Frist bestätigen.",
+    r8_i1:"Einberufung nicht beantworten",r8_i2:"Unentschuldigtes Fehlen",r8_i3:"Verspätung am Treffpunkt",
+    suspensao:"AUSSCHLUSS",
+    kasse_title:"💰 Mannschaftskasse",
+    kasse_desc:"Alle Bußgelder gehen in die Mannschaftskasse für: Abschlussgrillfeier · Teamveranstaltungen · Ausrüstung für die Gruppe",
+    sec3_title:"🚨 Disziplin",sec3_desc:"Disziplinarstufen und Konsequenzen bei Verstößen.",
+    d1_level:"Stufe 1",d1_title:"Mündliche Verwarnung",d1_desc:"Für leichte Fälle oder ersten Verstoß.",
+    d2_level:"Stufe 2",d2_title:"Formelle Verwarnung",d2_desc:"Interner Eintrag bei Trainerteam und Kapitän.",
+    d3_level:"Stufe 3",d3_title:"Sperre für 1 Spiel",d3_desc:"Respektlosigkeit, ernste Auseinandersetzungen oder Häufung von Verstößen.",
+    d4_level:"Stufe 4",d4_title:"Vorübergehende Sperre (1–4 Wochen)",d4_desc:"Schwere Beleidigungen, aggressives Verhalten, Schaden am Gruppenklima.",
+    d5_level:"Stufe 5",d5_title:"Ausschluss aus dem Kader",d5_desc:"Körperliche Gewalt, Rassismus, Diskriminierung, Drohungen.",
+    rule3_title:"Regel der 3 Verwarnungen",
+    rule3_i1:"3 formelle Verwarnungen → 1 Spielsperre",rule3_i2:"5 formelle Verwarnungen → Disziplinarsitzung",rule3_i3:"7 formelle Verwarnungen → Möglicher Ausschluss",
+    badge_1spiel:"1 Spiel",badge_sitzung:"Sitzung",badge_ausschluss:"Ausschluss",
+    quote_training:'"Schlecht trainiert, weniger gespielt. Gut trainiert, mehr gespielt." — Die Stammelf wird durch Anwesenheit, Einstellung, Disziplin und Leistung verdient — nicht durch Namen oder Freundschaft.',
+    sec4_title:"🤝 Gruppe",sec4_desc:"Die Struktur und Kultur, die den SK Brederis zusammenhalten.",
+    council_title:"Mannschaftsrat",
+    role_coach:"Cheftrainer",role_captain:"Kapitän",role_vice:"Vizekapitän",role_elected:"2 vom Kader gewählte Spieler",
+    council_tasks_title:"Aufgaben des Rats:",
+    council_t1:"Mannschaftsinteressen vertreten",council_t2:"Konflikte lösen",council_t3:"Zusammenhalt fördern",
+    council_t4:"Disziplinarfälle bewerten",council_t5:"Mannschaftskasse verwalten",council_t6:"Integrationsaktivitäten organisieren",
+    locker_title:"Kabinenkultur",locker_desc:"Die Kabine muss einig, positiv, respektvoll und ordentlich sein. Nicht toleriert: Grüppchenbildung, Klatsch, Intrigen oder Respektlosigkeit.",
+    family_title:"Familiengeist",family_desc:"Wenn ein Mitspieler einen Fehler macht — helfen wir. Wenn er Schwierigkeiten hat — unterstützen wir. Wenn er Erfolg hat — feiern wir gemeinsam.",
+    honor_title:"Ehrenkodex",
+    honor_1:"Mitspieler, Gegner und Schiedsrichter respektieren",honor_2:"Trainerteam und Verein respektieren",honor_3:"Mannschaft über persönliche Interessen stellen",
+    sec5_title:"🎯 Ziele",sec5_desc:"Was wir als Mannschaft und als Individuen erreichen wollen.",
+    goal_team_title:"Als Mannschaft",goal_player_title:"Als Spieler",
+    goal_t1:"Beste Defensive der Liga",goal_t2:"Bestes Gruppenklima",goal_t3:"Höchste Trainingsbeteiligung",goal_t4:"Junge Spieler entwickeln",goal_t5:"Um den Aufstieg kämpfen",
+    goal_p1:"Technisch verbessern",goal_p2:"Körperlich verbessern",goal_p3:"Mental verbessern",goal_p4:"Vorbild für Mitspieler sein",
+    mindset_title:"Spielmentalität",mindset_desc:"Wir betreten das Feld, um zu kämpfen, jeden Ball zu erkämpfen, den Gegner zu respektieren und niemals aufzugeben. Einsatz ist Pflicht. Talent ist ein Bonus.",
+    winner_title:"Siegermentalität",winner_desc:'Wir suchen keine Ausreden. Wir geben Mitspielern oder Schiedsrichtern keine Schuld. Nach jedem Spiel: "Was hätte ich besser machen können, um der Mannschaft zu helfen?"',
+    footer:"© 2026 SK Brederis · Eine Mannschaft. Eine Familie. Ein Ziel."
+  }
+};
+
+let currentLang=localStorage.getItem('skbrederis-lang')||'pt';
+
+function setLang(lang){
+  currentLang=lang;
+  localStorage.setItem('skbrederis-lang',lang);
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const key=el.dataset.key;
+    if(i18n[lang]&&i18n[lang][key]){
+      if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.value=i18n[lang][key]}
+      else if(el.tagName==='IMG'){el.alt=i18n[lang][key]}
+      else{el.textContent=i18n[lang][key]}
+    }
+  });
+}
+
+function switchTab(tabId){
+  document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===tabId));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  const t=document.getElementById(tabId);
+  if(t){t.classList.add('active');document.getElementById('tabs').scrollIntoView({behavior:'smooth',block:'start'})}
+  document.getElementById('tabsContainer').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+}
+
+window.addEventListener('scroll',()=>{
+  const h=document.getElementById('header');
+  if(window.scrollY>50){h.classList.add('scrolled')}else{h.classList.remove('scrolled')}
+});
+
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('active');
+  document.getElementById('tabsContainer').classList.toggle('open');
+});
+
+document.addEventListener('DOMContentLoaded',()=>{setLang(currentLang)});
+</script>
+
+</body>
+</html>
