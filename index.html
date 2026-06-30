@@ -26,7 +26,7 @@
     .hero-title{font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--text);letter-spacing:2px;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
     .hero-sub{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--text-sec);font-weight:500;max-width:700px;margin:0 auto 20px}
     #tabs{position:sticky;top:64px;z-index:900;background:rgba(26,26,46,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--card-border);padding:0 16px}
-    .tabs-container{display:flex;gap:8px;max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:12px 0}
+    .tabs-container{display:flex;gap:8px;max-width:1200px;margin:0 auto;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:12px 0}
     .tabs-container::-webkit-scrollbar{display:none}
     .tab-btn{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:10px;background:transparent;color:var(--text-sec);font-family:'Barlow',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .25s;white-space:nowrap;border:1px solid transparent}
     .tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.04)}
@@ -37,12 +37,12 @@
     .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
     .hamburger.active span:nth-child(2){opacity:0}
     .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-    main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 20px 60px}
+    main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px 60px}
     .tab-content{display:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease}
     .tab-content.active{display:block;opacity:1;transform:translateY(0)}
     .section-header{text-align:center;margin:40px 0 30px}
     .section-header h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--text);margin-bottom:8px}
-    .section-header p{color:var(--text-sec);font-size:.95rem;max-width:600px;margin:0 auto}
+    .section-header p{color:var(--text-sec);font-size:.95rem;max-width:680px;margin:0 auto}
     .card-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
     .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:22px;backdrop-filter:blur(4px);transition:transform .2s,box-shadow .2s,border-color .2s}
     .card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.25);border-color:rgba(233,69,96,0.15)}
@@ -50,9 +50,9 @@
     .card h4{font-size:1.1rem;color:var(--text);margin-bottom:8px}
     .card p,.card li{color:var(--text-sec);font-size:.9rem}
     .card ul{list-style:none;padding:0}
-    .card li{padding:4px 0;display:flex;justify-content:space-between;align-items:center}
+    .card li{padding:4px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
     .card li:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.04)}
-    .badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);transition:transform .2s,box-shadow .2s}
+    .badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);transition:transform .2s,box-shadow .2s;flex-shrink:0}
     .card:hover .badge{transform:scale(1.08);box-shadow:0 0 12px rgba(233,69,96,0.4)}
     .badge-green{background:var(--green)}
     .card:hover .badge-green{box-shadow:0 0 12px rgba(15,155,88,0.4)}
@@ -82,7 +82,7 @@
     .tl-5{background:rgba(44,11,14,0.5);color:var(--accent);border:1px solid var(--accent)}
     .avatar-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
     .avatar-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);padding:8px 14px;border-radius:50px;border:1px solid var(--card-border)}
-    .avatar-circle{width:36px;height:36px;border-radius:50%;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:1rem;border:2px solid var(--accent)}
+    .avatar-circle{width:36px;height:36px;border-radius:50%;background:var(--secondary);display:flex;align-items:center;justify-content:center;font-size:1rem;border:2px solid var(--accent);flex-shrink:0}
     .avatar-name{font-size:.85rem;font-weight:600;color:var(--text)}
     .avatar-role{font-size:.75rem;color:var(--text-sec)}
     .checklist{list-style:none;padding:0}
@@ -95,6 +95,68 @@
     .goal-card li{padding:6px 0;color:var(--text-sec);font-size:.9rem;display:flex;align-items:center;gap:8px}
     .goal-card li::before{content:'▸';color:var(--accent);font-weight:700}
     footer{text-align:center;padding:40px 20px;border-top:1px solid var(--card-border);color:var(--text-sec);font-size:.85rem}
+
+    /* Points / fines */
+    .pts-badge{background:var(--secondary);color:var(--gold);border:1px solid rgba(245,166,35,0.35);font-weight:700}
+    .pts-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0}
+    .pts-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.04)}
+    .pts-row span:first-child{color:var(--text-sec);font-size:.88rem}
+    .pts-add-btn{flex-shrink:0;width:30px;height:30px;border-radius:8px;border:1px solid rgba(245,166,35,0.4);background:rgba(245,166,35,0.08);color:var(--gold);font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s}
+    .pts-add-btn:hover{background:rgba(245,166,35,0.22);transform:scale(1.06)}
+    .pts-add-btn:active{transform:scale(.94)}
+
+    .calc-panel{background:linear-gradient(135deg,rgba(245,166,35,0.07),rgba(22,33,62,0.95));border:1px solid rgba(245,166,35,0.25);border-radius:16px;padding:24px;position:sticky;top:130px}
+    .calc-total{text-align:center;padding:14px 0}
+    .calc-total .num{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--gold);line-height:1}
+    .calc-total .lbl{color:var(--text-sec);font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
+    .progress-track{width:100%;height:10px;border-radius:6px;background:rgba(255,255,255,0.06);overflow:hidden;margin:10px 0 4px}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold));width:0%;transition:width .35s ease}
+    .progress-caption{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-sec)}
+    .calc-money{text-align:center;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.08)}
+    .calc-money .euro{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--accent)}
+    .calc-reset{display:block;margin:16px auto 0;padding:8px 20px;border-radius:8px;border:1px solid var(--card-border);background:transparent;color:var(--text-sec);font-family:'Barlow',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .2s}
+    .calc-reset:hover{color:var(--text);border-color:var(--accent)}
+    .calc-demo-note{font-size:.72rem;color:var(--text-sec);text-align:center;margin-top:10px;opacity:.75}
+    .calc-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;align-items:start}
+    @media(max-width:860px){.calc-grid{grid-template-columns:1fr}.calc-panel{position:static}}
+
+    /* Check-in */
+    .checkin-list{display:flex;flex-direction:column;gap:8px}
+    .checkin-row{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px 14px}
+    .checkin-name{flex:1;font-weight:600;font-size:.92rem}
+    .checkin-toggle{display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--card-border)}
+    .checkin-opt{padding:6px 12px;font-size:.75rem;font-weight:700;border:none;cursor:pointer;background:transparent;color:var(--text-sec);transition:all .2s}
+    .checkin-opt.in.sel{background:var(--green);color:#fff}
+    .checkin-opt.out.sel{background:var(--accent);color:#fff}
+    .checkin-summary{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+    .checkin-stat{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px 18px;text-align:center;min-width:110px}
+    .checkin-stat .n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem}
+    .checkin-stat .l{font-size:.7rem;color:var(--text-sec);text-transform:uppercase}
+
+    /* Ranking */
+    .rank-row{display:flex;align-items:center;gap:14px;padding:10px 0}
+    .rank-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.04)}
+    .rank-pos{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--text-sec);width:28px;flex-shrink:0;text-align:center}
+    .rank-row:nth-child(1) .rank-pos{color:#f5d76e}
+    .rank-row:nth-child(2) .rank-pos{color:#c9c9c9}
+    .rank-row:nth-child(3) .rank-pos{color:#d08a52}
+    .rank-name{flex:1;font-weight:600;font-size:.9rem}
+    .rank-bar-wrap{flex:2;height:8px;border-radius:5px;background:rgba(255,255,255,0.06);overflow:hidden}
+    .rank-bar{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--green),var(--gold))}
+    .rank-pts{width:54px;text-align:right;font-size:.8rem;color:var(--gold);font-weight:700;flex-shrink:0}
+
+    /* Calendar */
+    .cal-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    .cal-card{background:var(--card-bg);border:1px dashed var(--card-border);border-radius:14px;padding:20px;text-align:center}
+    .cal-card .tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:6px;background:rgba(15,155,88,0.15);color:var(--green);margin-bottom:10px}
+    .cal-card .tag.game{background:rgba(233,69,96,0.15);color:var(--accent)}
+    .cal-card .date{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--text)}
+    .cal-card .place{font-size:.8rem;color:var(--text-sec);margin-top:4px}
+
+    /* Gallery */
+    .gal-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+    .gal-slot{aspect-ratio:1;border-radius:12px;border:1px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--text-sec);background:rgba(255,255,255,0.02)}
+
     @media(max-width:600px){.goals-grid{grid-template-columns:1fr}}
     @media(max-width:768px){.logo{font-size:1.6rem}.sub-logo{font-size:.65rem}.hamburger{display:flex}.tabs-container{position:fixed;top:64px;left:0;right:0;flex-direction:column;background:rgba(26,26,46,0.98);padding:16px;gap:6px;transform:translateY(-150%);transition:transform .3s ease;border-bottom:1px solid var(--card-border);max-height:calc(100vh - 64px);overflow-y:auto}.tabs-container.open{transform:translateY(0)}.tab-btn{width:100%;justify-content:flex-start;padding:12px 16px}#hero{padding:120px 20px 60px}.card-grid{grid-template-columns:1fr}.goals-grid{grid-template-columns:1fr}}
     @media(min-width:769px) and (max-width:1024px){.card-grid{grid-template-columns:repeat(2,1fr)}}
@@ -125,10 +187,13 @@
 <nav id="tabs">
   <div class="tabs-container" id="tabsContainer">
     <button class="tab-btn active" data-tab="valores" onclick="switchTab('valores')"><span class="icon">⚽</span><span data-key="tab_valores">Valores</span></button>
-    <button class="tab-btn" data-tab="regras" onclick="switchTab('regras')"><span class="icon">📋</span><span data-key="tab_regras">Regras & Multas</span></button>
+    <button class="tab-btn" data-tab="regras" onclick="switchTab('regras')"><span class="icon">📋</span><span data-key="tab_regras">Regras & Pontos</span></button>
+    <button class="tab-btn" data-tab="calculadora" onclick="switchTab('calculadora')"><span class="icon">🧮</span><span data-key="tab_calc">Calculadora</span></button>
     <button class="tab-btn" data-tab="disciplina" onclick="switchTab('disciplina')"><span class="icon">🚨</span><span data-key="tab_disciplina">Disciplina</span></button>
     <button class="tab-btn" data-tab="grupo" onclick="switchTab('grupo')"><span class="icon">🤝</span><span data-key="tab_grupo">Grupo</span></button>
     <button class="tab-btn" data-tab="objetivos" onclick="switchTab('objetivos')"><span class="icon">🎯</span><span data-key="tab_objetivos">Objetivos</span></button>
+    <button class="tab-btn" data-tab="checkin" onclick="switchTab('checkin')"><span class="icon">✅</span><span data-key="tab_checkin">Check-in & Ranking</span></button>
+    <button class="tab-btn" data-tab="agenda" onclick="switchTab('agenda')"><span class="icon">📅</span><span data-key="tab_agenda">Calendário & Galeria</span></button>
   </div>
 </nav>
 
@@ -177,49 +242,57 @@
   </div>
 </section>
 
-<!-- SEÇÃO 2: REGRAS & MULTAS -->
+<!-- SEÇÃO 2: REGRAS & PONTOS -->
 <section id="regras" class="tab-content">
   <div class="section-header">
-    <h2 data-key="sec2_title">📋 Regras & Multas</h2>
-    <p data-key="sec2_desc">Conheça as regras do clube e as consequências de seu descumprimento.</p>
+    <h2 data-key="sec2_title">📋 Regras & Pontos</h2>
+    <p data-key="sec2_desc">Sabemos que quase todo mundo trabalha o dia inteiro antes de vir treinar — por isso o controle funciona por pontos. Cada infração soma pontos; só quando o acúmulo bate o limite é que vira multa.</p>
   </div>
+
+  <div class="card-grid" style="margin-bottom:16px;">
+    <div class="card card-gold" style="grid-column:1/-1;">
+      <h3 style="color:var(--gold);" data-key="howpts_title">⚙️ Como funciona o sistema de pontos</h3>
+      <p data-key="howpts_desc">Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong data-key="howpts_rule">A cada 15 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.</p>
+    </div>
+  </div>
+
   <div class="card-grid">
     <div class="card">
       <h3 data-key="r1_title">Pontualidade</h3>
       <p data-key="r1_desc">Chegue 10 minutos antes do treino e dos jogos.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r1_i1">Até 10 min de atraso</span> <span class="badge">€2</span></li>
-        <li><span data-key="r1_i2">Mais de 10 min</span> <span class="badge">€3</span></li>
-        <li><span data-key="r1_i3">Sem aviso prévio</span> <span class="badge">€5</span></li>
+        <li><span data-key="r1_i1">Até 10 min de atraso</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r1_i2">Mais de 10 min</span> <span class="badge pts-badge">2 pts</span></li>
+        <li><span data-key="r1_i3">Sem aviso prévio</span> <span class="badge pts-badge">3 pts</span></li>
       </ul>
     </div>
     <div class="card">
       <h3 data-key="r2_title">Bolas e Material</h3>
       <p data-key="r2_desc">As bolas são patrimônio do clube. Todos ajudam a montar e recolher.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r2_i1">Não recolher bolas</span> <span class="badge">€2</span></li>
-        <li><span data-key="r2_i2">Material espalhado</span> <span class="badge">€2</span></li>
-        <li><span data-key="r2_i3">Chutar sem autorização pós-treino</span> <span class="badge">€1</span></li>
-        <li><span data-key="r2_i4">Danificar bola por negligência</span> <span class="badge">€5</span></li>
+        <li><span data-key="r2_i1">Não recolher bolas</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r2_i2">Material espalhado</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r2_i3">Chutar sem autorização pós-treino</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r2_i4">Danificar bola por negligência</span> <span class="badge pts-badge">3 pts</span></li>
       </ul>
     </div>
     <div class="card">
       <h3 data-key="r3_title">Vestiário</h3>
       <p data-key="r3_desc">Manter limpo e organizado. Chuteiras limpas ao entrar.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r3_i1">Entrar com chuteiras sujas</span> <span class="badge">€2</span></li>
-        <li><span data-key="r3_i2">Deixar lixo</span> <span class="badge">€2</span></li>
-        <li><span data-key="r3_i3">Roupas ou fitas espalhadas</span> <span class="badge">€1</span></li>
-        <li><span data-key="r3_i4">Banho e local sujo</span> <span class="badge">€2</span></li>
+        <li><span data-key="r3_i1">Entrar com chuteiras sujas</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r3_i2">Deixar lixo</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r3_i3">Roupas ou fitas espalhadas</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r3_i4">Banho e local sujo</span> <span class="badge pts-badge">1 pt</span></li>
       </ul>
     </div>
     <div class="card">
       <h3 data-key="r4_title">Substituições</h3>
       <p data-key="r4_desc">Ao sair do campo: cumprimentar o colega que entra e a comissão técnica.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r4_i1">Não cumprimentar colega</span> <span class="badge">€2</span></li>
-        <li><span data-key="r4_i2">Não cumprimentar treinador</span> <span class="badge">€2</span></li>
-        <li><span data-key="r4_i3">Ir ao vestiário sem autorização</span> <span class="badge">€5</span></li>
+        <li><span data-key="r4_i1">Não cumprimentar colega</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r4_i2">Não cumprimentar treinador</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r4_i3">Ir ao vestiário sem autorização</span> <span class="badge pts-badge">2 pts</span></li>
         <li><span data-key="r4_i4">3ª vez: afastamento</span> <span class="badge" style="background:#c0392b;" data-key="suspensao">SUSPENSÃO</span></li>
       </ul>
     </div>
@@ -227,27 +300,27 @@
       <h3 data-key="r5_title">Banco de Reservas</h3>
       <p data-key="r5_desc">Todos permanecem envolvidos no jogo. Celular fora durante a partida.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r5_i1">Uso excessivo do celular</span> <span class="badge">€2</span></li>
-        <li><span data-key="r5_i2">Falta de atenção</span> <span class="badge">€2</span></li>
-        <li><span data-key="r5_i3">Comportamento negativo</span> <span class="badge">€3</span></li>
+        <li><span data-key="r5_i1">Uso excessivo do celular</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r5_i2">Falta de atenção</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r5_i3">Comportamento negativo</span> <span class="badge pts-badge">2 pts</span></li>
       </ul>
     </div>
     <div class="card">
       <h3 data-key="r6_title">Árbitros e Adversários</h3>
       <p data-key="r6_desc">O SK Brederis respeita o futebol e todos os envolvidos.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r6_i1">Reclamação desnecessária</span> <span class="badge">€2</span></li>
-        <li><span data-key="r6_i2">Insultar adversários</span> <span class="badge">€5</span></li>
-        <li><span data-key="r6_i3">Cartão por reclamação</span> <span class="badge">€3</span></li>
-        <li><span data-key="r6_i4">Cartão vermelho antidesportivo</span> <span class="badge">€5</span></li>
+        <li><span data-key="r6_i1">Reclamação desnecessária</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r6_i2">Insultar adversários</span> <span class="badge pts-badge">3 pts</span></li>
+        <li><span data-key="r6_i3">Cartão por reclamação</span> <span class="badge pts-badge">2 pts</span></li>
+        <li><span data-key="r6_i4">Cartão vermelho antidesportivo</span> <span class="badge pts-badge">3 pts</span></li>
       </ul>
     </div>
     <div class="card">
       <h3 data-key="r7_title">Redes Sociais</h3>
       <p data-key="r7_desc">Nenhum jogador pode prejudicar a imagem do clube online.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r7_i1">Post ofensivo sobre colegas</span> <span class="badge">€5</span></li>
-        <li><span data-key="r7_i2">Post ofensivo sobre o clube</span> <span class="badge">€5</span></li>
+        <li><span data-key="r7_i1">Post ofensivo sobre colegas</span> <span class="badge pts-badge">3 pts</span></li>
+        <li><span data-key="r7_i2">Post ofensivo sobre o clube</span> <span class="badge pts-badge">3 pts</span></li>
         <li><span data-key="r7_i3">3ª vez: afastamento</span> <span class="badge" style="background:#c0392b;" data-key="suspensao">SUSPENSÃO</span></li>
       </ul>
     </div>
@@ -255,9 +328,18 @@
       <h3 data-key="r8_title">Jogos e Convocações</h3>
       <p data-key="r8_desc">Confirmar presença dentro do prazo estabelecido.</p>
       <ul style="margin-top:12px;">
-        <li><span data-key="r8_i1">Não responder convocação</span> <span class="badge">€2</span></li>
-        <li><span data-key="r8_i2">Falta sem justificativa</span> <span class="badge">€5</span></li>
-        <li><span data-key="r8_i3">Atraso no ponto de encontro</span> <span class="badge">€5</span></li>
+        <li><span data-key="r8_i1">Não responder convocação</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r8_i2">Falta sem justificativa</span> <span class="badge pts-badge">3 pts</span></li>
+        <li><span data-key="r8_i3">Atraso no ponto de encontro</span> <span class="badge pts-badge">3 pts</span></li>
+      </ul>
+    </div>
+    <div class="card card-gold">
+      <h3 style="color:var(--gold);" data-key="r9_title">📲 App de Monitoramento</h3>
+      <p data-key="r9_desc">Todo jogador responde ao app nos dias de treino — é parte do acompanhamento físico, não só burocracia.</p>
+      <ul style="margin-top:12px;">
+        <li><span data-key="r9_i1">Não confirmar presença até 12h do dia do treino</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r9_i2">Confirmar sem preencher o bem-estar</span> <span class="badge pts-badge">1 pt</span></li>
+        <li><span data-key="r9_i3">Não preencher o RPE após o treino</span> <span class="badge pts-badge">1 pt</span></li>
       </ul>
     </div>
   </div>
@@ -265,6 +347,70 @@
     <div class="card card-green" style="grid-column:1/-1;">
       <h3 style="color:var(--green);" data-key="kasse_title">💰 Caixa da Equipe</h3>
       <p data-key="kasse_desc">Todo o valor das multas vai para o <strong>Caixa da Equipe</strong> para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 2B: CALCULADORA -->
+<section id="calculadora" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec2b_title">🧮 Calculadora de Pontos</h2>
+    <p data-key="sec2b_desc">Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.</p>
+  </div>
+  <div class="calc-grid">
+    <div>
+      <div class="card-grid">
+        <div class="card">
+          <h4 data-key="r1_title">Pontualidade</h4>
+          <div class="pts-row"><span data-key="r1_i1">Até 10 min de atraso</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r1_i2">Mais de 10 min</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div>
+          <div class="pts-row"><span data-key="r1_i3">Sem aviso prévio</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r2_title">Bolas e Material</h4>
+          <div class="pts-row"><span data-key="r2_i1">Não recolher bolas</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r2_i4">Danificar bola por negligência</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r3_title">Vestiário</h4>
+          <div class="pts-row"><span data-key="r3_i1">Chuteiras sujas / lixo / bagunça</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r5_title">Banco de Reservas</h4>
+          <div class="pts-row"><span data-key="r5_i1">Celular durante o jogo</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r5_i3">Comportamento negativo</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r6_title">Árbitros e Adversários</h4>
+          <div class="pts-row"><span data-key="r6_i3">Cartão por reclamação</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div>
+          <div class="pts-row"><span data-key="r6_i2">Insultar adversários</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r8_title">Jogos e Convocações</h4>
+          <div class="pts-row"><span data-key="r8_i1">Não responder convocação</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r8_i2">Falta sem justificativa</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div>
+        </div>
+        <div class="card">
+          <h4 data-key="r9_title">📲 App de Monitoramento</h4>
+          <div class="pts-row"><span data-key="r9_i1">Não confirmar presença até 12h</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r9_i2">Confirmar sem bem-estar</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+          <div class="pts-row"><span data-key="r9_i3">Sem RPE pós-treino</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="calc-panel">
+      <div class="calc-total">
+        <div class="num" id="calcTotal">0</div>
+        <div class="lbl" data-key="calc_pts_label">pontos acumulados</div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="calcProgress"></div></div>
+      <div class="progress-caption"><span id="calcCaption">0 / 15</span><span data-key="calc_threshold">15 pts = €5</span></div>
+      <div class="calc-money">
+        <div class="euro" id="calcMoney">€0</div>
+        <div class="lbl" data-key="calc_money_label">em multas geradas</div>
+      </div>
+      <button class="calc-reset" onclick="resetPts()" data-key="calc_reset">Zerar simulação</button>
+      <p class="calc-demo-note" data-key="calc_note">* Simulação local, apenas para entender o sistema. O controle oficial é feito pelo Conselho da Equipe.</p>
     </div>
   </div>
 </section>
@@ -340,7 +486,7 @@
           <li data-key="council_t1">Representar os interesses da equipe</li>
           <li data-key="council_t2">Resolver conflitos</li>
           <li data-key="council_t3">Promover a união</li>
-          <li data-key="council_t4">Avaliar situações disciplinares</li>
+          <li data-key="council_t4">Avaliar situações disciplinares e gerir o sistema de pontos</li>
           <li data-key="council_t5">Administrar a Mannschaftskasse</li>
           <li data-key="council_t6">Organizar atividades de integração</li>
         </ul>
@@ -404,6 +550,53 @@
   </div>
 </section>
 
+<!-- SEÇÃO 6: CHECK-IN & RANKING -->
+<section id="checkin" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec6_title">✅ Check-in & Ranking</h2>
+    <p data-key="sec6_desc">Demonstração de como o check-in de presença e o ranking de disciplina vão funcionar. Esta tela é apenas visual — toques aqui não ficam salvos nem visíveis para outros jogadores.</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;color:var(--text);" data-key="checkin_subtitle">Check-in de hoje</h3>
+  <div class="checkin-summary">
+    <div class="checkin-stat"><div class="n" id="ciPresent" style="color:var(--green);">0</div><div class="l" data-key="ci_present">Presentes</div></div>
+    <div class="checkin-stat"><div class="n" id="ciAbsent" style="color:var(--accent);">0</div><div class="l" data-key="ci_absent">Ausentes</div></div>
+    <div class="checkin-stat"><div class="n" id="ciTotal">0</div><div class="l" data-key="ci_total">Elenco</div></div>
+  </div>
+  <div class="checkin-list" id="checkinList"></div>
+
+  <h3 style="margin:36px 0 12px;color:var(--text);" data-key="rank_subtitle">Ranking de disciplina (exemplo)</h3>
+  <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:14px;" data-key="rank_note">Quanto menos pontos acumulados no mês, melhor a posição. Dados de exemplo — o ranking real é calculado pelo Conselho da Equipe.</p>
+  <div class="card" id="rankList"></div>
+</section>
+
+<!-- SEÇÃO 7: CALENDÁRIO & GALERIA -->
+<section id="agenda" class="tab-content">
+  <div class="section-header">
+    <h2 data-key="sec7_title">📅 Calendário & Galeria</h2>
+    <p data-key="sec7_desc">Estrutura pronta para o Gigio preencher com as datas e fotos reais da temporada.</p>
+  </div>
+
+  <h3 style="margin-bottom:12px;color:var(--text);" data-key="cal_subtitle">Próximos compromissos</h3>
+  <p id="calSourceNote" style="color:var(--text-sec);font-size:.78rem;margin-bottom:14px;"></p>
+  <div class="cal-grid" id="calGrid">
+    <div class="cal-card"><span class="tag" data-key="tag_training">Treino</span><div class="date">--/--</div><div class="place" data-key="cal_placeholder">A definir</div></div>
+    <div class="cal-card"><span class="tag" data-key="tag_training">Treino</span><div class="date">--/--</div><div class="place" data-key="cal_placeholder">A definir</div></div>
+    <div class="cal-card"><span class="tag game" data-key="tag_game">Jogo</span><div class="date">--/--</div><div class="place" data-key="cal_placeholder">A definir</div></div>
+    <div class="cal-card"><span class="tag" data-key="tag_training">Treino</span><div class="date">--/--</div><div class="place" data-key="cal_placeholder">A definir</div></div>
+  </div>
+
+  <h3 style="margin:36px 0 12px;color:var(--text);" data-key="gal_subtitle">Galeria do elenco</h3>
+  <div class="gal-grid">
+    <div class="gal-slot">📷</div>
+    <div class="gal-slot">📷</div>
+    <div class="gal-slot">📷</div>
+    <div class="gal-slot">📷</div>
+    <div class="gal-slot">📷</div>
+    <div class="gal-slot">📷</div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -416,7 +609,7 @@ const i18n={
     sub_logo:"4. Landesklasse Vorarlberg · 2026/2027",
     hero_title:"Disciplinados nos treinos. Unidos nos jogos. Fortes como equipe.",
     hero_sub:"Respeito + Disciplina + Compromisso = Sucesso",
-    tab_valores:"Valores",tab_regras:"Regras & Multas",tab_disciplina:"Disciplina",tab_grupo:"Grupo",tab_objetivos:"Objetivos",
+    tab_valores:"Valores",tab_regras:"Regras & Pontos",tab_calc:"Calculadora",tab_disciplina:"Disciplina",tab_grupo:"Grupo",tab_objetivos:"Objetivos",tab_checkin:"Check-in & Ranking",tab_agenda:"Calendário & Galeria",
     sec1_title:"⚽ Valores",sec1_desc:"Os princípios que guiam cada jogador do SK Brederis.",
     v1_title:"Respeito",v1_desc:"Respeitar colegas, adversários, árbitros e a instituição em todos os momentos.",
     v2_title:"Disciplina",v2_desc:"Cumprir horários, regras e compromissos com rigor e consistência.",
@@ -431,7 +624,11 @@ const i18n={
     last_title:"Último a sair",last_desc:"Ninguém sai antes de recolher material, guardar bolas e verificar que o vestiário está limpo.",
     lead_title:"Liderança",lead_desc:"Todos são líderes pelo exemplo: chegar cedo, trabalhar duro, incentivar colegas e assumir responsabilidades.",
     golden_title:"🔑 Regra de Ouro",golden_text:'"Isso ajuda a equipe a crescer? Se não — não faça."',
-    sec2_title:"📋 Regras & Multas",sec2_desc:"Conheça as regras do clube e as consequências de seu descumprimento.",
+    sec2_title:"📋 Regras & Pontos",
+    sec2_desc:"Sabemos que quase todo mundo trabalha o dia inteiro antes de vir treinar — por isso o controle funciona por pontos. Cada infração soma pontos; só quando o acúmulo bate o limite é que vira multa.",
+    howpts_title:"⚙️ Como funciona o sistema de pontos",
+    howpts_desc:'Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong>A cada 15 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.',
+    howpts_rule:"A cada 15 pontos acumulados, vira 1 multa de €5",
     r1_title:"Pontualidade",r1_desc:"Chegue 10 minutos antes do treino e dos jogos.",
     r1_i1:"Até 10 min de atraso",r1_i2:"Mais de 10 min",r1_i3:"Sem aviso prévio",
     r2_title:"Bolas e Material",r2_desc:"As bolas são patrimônio do clube. Todos ajudam a montar e recolher.",
@@ -448,9 +645,17 @@ const i18n={
     r7_i1:"Post ofensivo sobre colegas",r7_i2:"Post ofensivo sobre o clube",r7_i3:"3ª vez: afastamento",
     r8_title:"Jogos e Convocações",r8_desc:"Confirmar presença dentro do prazo estabelecido.",
     r8_i1:"Não responder convocação",r8_i2:"Falta sem justificativa",r8_i3:"Atraso no ponto de encontro",
+    r9_title:"📲 App de Monitoramento",
+    r9_desc:"Todo jogador responde ao app nos dias de treino — é parte do acompanhamento físico, não só burocracia.",
+    r9_i1:"Não confirmar presença até 12h do dia do treino",r9_i2:"Confirmar sem preencher o bem-estar",r9_i3:"Não preencher o RPE após o treino",
     suspensao:"SUSPENSÃO",
     kasse_title:"💰 Caixa da Equipe",
     kasse_desc:"Todo o valor das multas vai para o Caixa da Equipe para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo",
+    sec2b_title:"🧮 Calculadora de Pontos",
+    sec2b_desc:'Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.',
+    calc_pts_label:"pontos acumulados",calc_threshold:"15 pts = €5",calc_money_label:"em multas geradas",
+    calc_reset:"Zerar simulação",
+    calc_note:"* Simulação local, apenas para entender o sistema. O controle oficial é feito pelo Conselho da Equipe.",
     sec3_title:"🚨 Disciplina",sec3_desc:"Níveis disciplinares e consequências por infrações.",
     d1_level:"Nível 1 / Stufe 1",d1_title:"Advertência Verbal",d1_desc:"Para casos leves ou primeira ocorrência.",
     d2_level:"Nível 2 / Stufe 2",d2_title:"Advertência Formal",d2_desc:"Registro interno junto à comissão técnica e ao capitão.",
@@ -466,7 +671,7 @@ const i18n={
     role_coach:"Treinador Principal",role_captain:"Capitão",role_vice:"Vice-Capitão",role_elected:"2 Jogadores Eleitos",
     council_tasks_title:"Funções do Conselho:",
     council_t1:"Representar os interesses da equipe",council_t2:"Resolver conflitos",council_t3:"Promover a união",
-    council_t4:"Avaliar situações disciplinares",council_t5:"Administrar a Mannschaftskasse",council_t6:"Organizar atividades de integração",
+    council_t4:"Avaliar situações disciplinares e gerir o sistema de pontos",council_t5:"Administrar a Mannschaftskasse",council_t6:"Organizar atividades de integração",
     locker_title:"Cultura do Vestiário",locker_desc:"O vestiário deve ser unido, positivo, respeitoso e organizado. Não são tolerados: panelinhas, fofoca, intrigas ou falta de respeito.",
     family_title:"Espírito de Família",family_desc:"Quando um colega erra — ajudamos. Quando está em dificuldade — apoiamos. Quando tem sucesso — celebramos juntos.",
     honor_title:"Código de Honra",
@@ -477,13 +682,21 @@ const i18n={
     goal_p1:"Melhorar tecnicamente",goal_p2:"Melhorar fisicamente",goal_p3:"Melhorar mentalmente",goal_p4:"Ser exemplo para os colegas",
     mindset_title:"Mentalidade de Jogo",mindset_desc:"Entramos em campo para competir, lutar por cada bola, respeitar o adversário e nunca desistir. O esforço é obrigatório. O talento é um diferencial.",
     winner_title:"Cultura de Vitória",winner_desc:'Não procuramos desculpas. Não culpamos colegas nem árbitros. Após cada jogo: "O que eu poderia ter feito melhor para ajudar a equipe?"',
+    sec6_title:"✅ Check-in & Ranking",
+    sec6_desc:"Demonstração de como o check-in de presença e o ranking de disciplina vão funcionar. Esta tela é apenas visual — toques aqui não ficam salvos nem visíveis para outros jogadores.",
+    checkin_subtitle:"Check-in de hoje",ci_present:"Presentes",ci_absent:"Ausentes",ci_total:"Elenco",
+    rank_subtitle:"Ranking de disciplina (exemplo)",
+    rank_note:"Quanto menos pontos acumulados no mês, melhor a posição. Dados de exemplo — o ranking real é calculado pelo Conselho da Equipe.",
+    sec7_title:"📅 Calendário & Galeria",sec7_desc:"Estrutura pronta para o Gigio preencher com as datas e fotos reais da temporada.",
+    cal_subtitle:"Próximos compromissos",tag_training:"Treino",tag_game:"Jogo",cal_placeholder:"A definir",
+    gal_subtitle:"Galeria do elenco",
     footer:"© 2026 SK Brederis · Uma Equipe. Uma Família. Um Objetivo."
   },
   de:{
     sub_logo:"4. Landesklasse Vorarlberg · 2026/2027",
     hero_title:"Diszipliniert im Training. Vereint im Spiel. Stark als Mannschaft.",
     hero_sub:"Respekt + Disziplin + Engagement = Erfolg",
-    tab_valores:"Werte",tab_regras:"Regeln & Bußen",tab_disciplina:"Disziplin",tab_grupo:"Gruppe",tab_objetivos:"Ziele",
+    tab_valores:"Werte",tab_regras:"Regeln & Punkte",tab_calc:"Rechner",tab_disciplina:"Disziplin",tab_grupo:"Gruppe",tab_objetivos:"Ziele",tab_checkin:"Check-in & Rangliste",tab_agenda:"Kalender & Galerie",
     sec1_title:"⚽ Werte",sec1_desc:"Die Prinzipien, die jeden Spieler des SK Brederis leiten.",
     v1_title:"Respekt",v1_desc:"Mitspieler, Gegner, Schiedsrichter und den Verein jederzeit respektieren.",
     v2_title:"Disziplin",v2_desc:"Zeiten, Regeln und Verpflichtungen streng und konsequent einhalten.",
@@ -498,7 +711,11 @@ const i18n={
     last_title:"Letzter geht",last_desc:"Niemand geht, bevor das Material eingesammelt, die Bälle verstaut und die Kabine sauber ist.",
     lead_title:"Führung",lead_desc:"Alle sind Vorbilder: früh ankommen, hart arbeiten, Teamkollegen motivieren und Verantwortung übernehmen.",
     golden_title:"🔑 Goldene Regel",golden_text:'"Hilft das der Mannschaft zu wachsen? Wenn nicht — tu es nicht."',
-    sec2_title:"📋 Regeln & Bußen",sec2_desc:"Lernen Sie die Vereinsregeln und die Folgen ihrer Nichteinhaltung kennen.",
+    sec2_title:"📋 Regeln & Punkte",
+    sec2_desc:"Wir wissen, dass fast alle den ganzen Tag arbeiten, bevor sie zum Training kommen — deshalb funktioniert die Kontrolle über Punkte. Jeder Verstoß summiert Punkte; erst wenn die Grenze erreicht ist, wird daraus eine Geldstrafe.",
+    howpts_title:"⚙️ Wie das Punktesystem funktioniert",
+    howpts_desc:'Jeder Verstoß unten zählt 1 bis 3 Punkte. Die Punkte jedes Spielers werden über den Monat summiert. <strong>Alle 15 gesammelten Punkte werden zu 1 Geldstrafe von €5</strong>, die in die Mannschaftskasse fließt. Schwere Wiederholung (3. Mal bei derselben Regel) kann unabhängig von den Punkten zu einer Sperre führen.',
+    howpts_rule:"Alle 15 gesammelten Punkte werden zu 1 Geldstrafe von €5",
     r1_title:"Pünktlichkeit",r1_desc:"Erscheine 10 Minuten vor Training und Spiel.",
     r1_i1:"Bis 10 Min. Verspätung",r1_i2:"Mehr als 10 Min.",r1_i3:"Ohne Vorankündigung",
     r2_title:"Bälle & Material",r2_desc:"Bälle sind Vereinseigentum. Alle helfen beim Auf- und Abbau.",
@@ -515,9 +732,17 @@ const i18n={
     r7_i1:"Beleidigender Post über Mitspieler",r7_i2:"Beleidigender Post über den Verein",r7_i3:"3. Mal: Ausschluss",
     r8_title:"Spiele & Einberufungen",r8_desc:"Teilnahme innerhalb der gesetzten Frist bestätigen.",
     r8_i1:"Einberufung nicht beantworten",r8_i2:"Unentschuldigtes Fehlen",r8_i3:"Verspätung am Treffpunkt",
+    r9_title:"📲 Monitoring-App",
+    r9_desc:"Jeder Spieler antwortet an Trainingstagen in der App — das ist Teil der körperlichen Betreuung, nicht nur Bürokratie.",
+    r9_i1:"Anwesenheit nicht bis 12 Uhr am Trainingstag bestätigt",r9_i2:"Bestätigt, aber Wellbeing-Formular nicht ausgefüllt",r9_i3:"RPE nach dem Training nicht ausgefüllt",
     suspensao:"AUSSCHLUSS",
     kasse_title:"💰 Mannschaftskasse",
     kasse_desc:"Alle Bußgelder gehen in die Mannschaftskasse für: Abschlussgrillfeier · Teamveranstaltungen · Ausrüstung für die Gruppe",
+    sec2b_title:"🧮 Punkterechner",
+    sec2b_desc:'Simuliere deine Punktzahl: Klicke auf "+", sobald ein Verstoß passiert, und sieh in Echtzeit, wie nah du an einer Geldstrafe bist. Demo-Werkzeug — speichert keine Daten zwischen Besuchen.',
+    calc_pts_label:"gesammelte Punkte",calc_threshold:"15 Pkt = €5",calc_money_label:"an Bußgeldern erzeugt",
+    calc_reset:"Simulation zurücksetzen",
+    calc_note:"* Lokale Simulation, nur zum Verständnis des Systems. Die offizielle Kontrolle erfolgt durch den Mannschaftsrat.",
     sec3_title:"🚨 Disziplin",sec3_desc:"Disziplinarstufen und Konsequenzen bei Verstößen.",
     d1_level:"Stufe 1",d1_title:"Mündliche Verwarnung",d1_desc:"Für leichte Fälle oder ersten Verstoß.",
     d2_level:"Stufe 2",d2_title:"Formelle Verwarnung",d2_desc:"Interner Eintrag bei Trainerteam und Kapitän.",
@@ -533,7 +758,7 @@ const i18n={
     role_coach:"Cheftrainer",role_captain:"Kapitän",role_vice:"Vizekapitän",role_elected:"2 vom Kader gewählte Spieler",
     council_tasks_title:"Aufgaben des Rats:",
     council_t1:"Mannschaftsinteressen vertreten",council_t2:"Konflikte lösen",council_t3:"Zusammenhalt fördern",
-    council_t4:"Disziplinarfälle bewerten",council_t5:"Mannschaftskasse verwalten",council_t6:"Integrationsaktivitäten organisieren",
+    council_t4:"Disziplinarfälle bewerten und das Punktesystem verwalten",council_t5:"Mannschaftskasse verwalten",council_t6:"Integrationsaktivitäten organisieren",
     locker_title:"Kabinenkultur",locker_desc:"Die Kabine muss einig, positiv, respektvoll und ordentlich sein. Nicht toleriert: Grüppchenbildung, Klatsch, Intrigen oder Respektlosigkeit.",
     family_title:"Familiengeist",family_desc:"Wenn ein Mitspieler einen Fehler macht — helfen wir. Wenn er Schwierigkeiten hat — unterstützen wir. Wenn er Erfolg hat — feiern wir gemeinsam.",
     honor_title:"Ehrenkodex",
@@ -544,15 +769,22 @@ const i18n={
     goal_p1:"Technisch verbessern",goal_p2:"Körperlich verbessern",goal_p3:"Mental verbessern",goal_p4:"Vorbild für Mitspieler sein",
     mindset_title:"Spielmentalität",mindset_desc:"Wir betreten das Feld, um zu kämpfen, jeden Ball zu erkämpfen, den Gegner zu respektieren und niemals aufzugeben. Einsatz ist Pflicht. Talent ist ein Bonus.",
     winner_title:"Siegermentalität",winner_desc:'Wir suchen keine Ausreden. Wir geben Mitspielern oder Schiedsrichtern keine Schuld. Nach jedem Spiel: "Was hätte ich besser machen können, um der Mannschaft zu helfen?"',
+    sec6_title:"✅ Check-in & Rangliste",
+    sec6_desc:"Demonstration, wie der Anwesenheits-Check-in und die Disziplin-Rangliste funktionieren werden. Dieser Bildschirm ist nur visuell — Eingaben hier werden nicht gespeichert oder anderen Spielern angezeigt.",
+    checkin_subtitle:"Check-in heute",ci_present:"Anwesend",ci_absent:"Abwesend",ci_total:"Kader",
+    rank_subtitle:"Disziplin-Rangliste (Beispiel)",
+    rank_note:"Je weniger Punkte im Monat gesammelt, desto besser die Position. Beispieldaten — die echte Rangliste wird vom Mannschaftsrat berechnet.",
+    sec7_title:"📅 Kalender & Galerie",sec7_desc:"Fertige Struktur, die Gigio mit den echten Terminen und Fotos der Saison füllen kann.",
+    cal_subtitle:"Nächste Termine",tag_training:"Training",tag_game:"Spiel",cal_placeholder:"Noch offen",
+    gal_subtitle:"Kadergalerie",
     footer:"© 2026 SK Brederis · Eine Mannschaft. Eine Familie. Ein Ziel."
   }
 };
 
-let currentLang=localStorage.getItem('skbrederis-lang')||'pt';
+let currentLang='pt';
 
 function setLang(lang){
   currentLang=lang;
-  localStorage.setItem('skbrederis-lang',lang);
   document.documentElement.lang=lang;
   document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
   document.querySelectorAll('[data-key]').forEach(el=>{
@@ -560,9 +792,12 @@ function setLang(lang){
     if(i18n[lang]&&i18n[lang][key]){
       if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.value=i18n[lang][key]}
       else if(el.tagName==='IMG'){el.alt=i18n[lang][key]}
-      else{el.textContent=i18n[lang][key]}
+      else{el.innerHTML=i18n[lang][key]}
     }
   });
+  renderCheckin();
+  renderRanking();
+  if(typeof loadCalendar==='function') loadCalendar();
 }
 
 function switchTab(tabId){
@@ -584,7 +819,134 @@ document.getElementById('hamburger').addEventListener('click',function(){
   document.getElementById('tabsContainer').classList.toggle('open');
 });
 
-document.addEventListener('DOMContentLoaded',()=>{setLang(currentLang)});
+/* ===== Calculadora de pontos ===== */
+let calcPoints=0;
+function addPts(n){
+  calcPoints+=n;
+  updateCalc();
+}
+function resetPts(){
+  calcPoints=0;
+  updateCalc();
+}
+function updateCalc(){
+  document.getElementById('calcTotal').textContent=calcPoints;
+  const inCycle=calcPoints%15;
+  const pct=Math.min(100,(inCycle/15)*100);
+  document.getElementById('calcProgress').style.width=(calcPoints>0 && inCycle===0?100:pct)+'%';
+  document.getElementById('calcCaption').textContent=(calcPoints>0 && inCycle===0?15:inCycle)+' / 15';
+  const fines=Math.floor(calcPoints/15);
+  document.getElementById('calcMoney').textContent='€'+(fines*5);
+}
+
+/* ===== Check-in demo (in-memory only, resets on reload) ===== */
+const squad=['Lucas','Matheus','Pedro','Rafael','Bruno','Diego','Thiago','Felipe','Gabriel','André','Marcos','Vitor'];
+let checkinState={};
+squad.forEach(n=>checkinState[n]=null);
+
+function renderCheckin(){
+  const list=document.getElementById('checkinList');
+  list.innerHTML='';
+  squad.forEach(name=>{
+    const row=document.createElement('div');
+    row.className='checkin-row';
+    const inSel=checkinState[name]==='in'?' sel':'';
+    const outSel=checkinState[name]==='out'?' sel':'';
+    row.innerHTML=`
+      <span class="checkin-name">${name}</span>
+      <div class="checkin-toggle">
+        <button class="checkin-opt in${inSel}" onclick="setCheckin('${name}','in')">${currentLang==='de'?'Da':'Presente'}</button>
+        <button class="checkin-opt out${outSel}" onclick="setCheckin('${name}','out')">${currentLang==='de'?'Fehlt':'Ausente'}</button>
+      </div>`;
+    list.appendChild(row);
+  });
+  updateCheckinSummary();
+}
+function setCheckin(name,val){
+  checkinState[name]=checkinState[name]===val?null:val;
+  renderCheckin();
+}
+function updateCheckinSummary(){
+  const vals=Object.values(checkinState);
+  document.getElementById('ciPresent').textContent=vals.filter(v=>v==='in').length;
+  document.getElementById('ciAbsent').textContent=vals.filter(v=>v==='out').length;
+  document.getElementById('ciTotal').textContent=squad.length;
+}
+
+/* ===== Ranking demo (static sample data) ===== */
+const rankingSample=[
+  {name:'Rafael',pts:2},{name:'André',pts:3},{name:'Lucas',pts:4},
+  {name:'Gabriel',pts:5},{name:'Diego',pts:6},{name:'Pedro',pts:8},
+  {name:'Bruno',pts:9},{name:'Thiago',pts:11},{name:'Matheus',pts:12},
+  {name:'Felipe',pts:13}
+];
+function renderRanking(){
+  const wrap=document.getElementById('rankList');
+  const sorted=[...rankingSample].sort((a,b)=>a.pts-b.pts);
+  const max=Math.max(...sorted.map(p=>p.pts),15);
+  wrap.innerHTML=sorted.map((p,i)=>`
+    <div class="rank-row">
+      <div class="rank-pos">${i+1}</div>
+      <div class="rank-name">${p.name}</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:${(p.pts/max)*100}%"></div></div>
+      <div class="rank-pts">${p.pts} pt</div>
+    </div>`).join('');
+}
+
+/* ===== Calendário via Google Sheets =====
+   COMO CONFIGURAR (uma vez só):
+   1. Crie uma Google Sheet com 3 colunas, nesta ordem: Data | Tipo | Local
+      Exemplo de linha:  12/07  | Treino | Campo SK Brederis
+      Tipo aceito: Treino / Training  ou  Jogo / Spiel  (maiúscula/minúscula não importa)
+   2. No Sheets: Arquivo > Compartilhar > Publicar na web > selecione a aba > formato CSV > Publicar
+   3. Copie o link gerado (termina em "output=csv") e cole abaixo, substituindo CALENDAR_SHEET_CSV_URL.
+   4. Pronto: toda vez que você editar a planilha, o site atualiza sozinho — sem precisar mexer no código aqui.
+*/
+const CALENDAR_SHEET_CSV_URL = ""; // <-- cole aqui o link CSV publicado da sua Google Sheet
+
+function parseCSV(text){
+  return text.trim().split(/\r?\n/).map(line=>{
+    // suporta campos simples separados por vírgula (sem aspas complexas)
+    return line.split(',').map(c=>c.trim().replace(/^"|"$/g,''));
+  });
+}
+
+async function loadCalendar(){
+  const note = document.getElementById('calSourceNote');
+  if(!CALENDAR_SHEET_CSV_URL){
+    note.textContent = currentLang==='de'
+      ? 'Kalender noch nicht mit einer Google Sheet verbunden — siehe Anleitung im Code (CALENDAR_SHEET_CSV_URL).'
+      : 'Calendário ainda não conectado a uma Google Sheet — veja as instruções no código (CALENDAR_SHEET_CSV_URL).';
+    return;
+  }
+  note.textContent = currentLang==='de' ? 'Lade Termine…' : 'Carregando compromissos…';
+  try{
+    const res = await fetch(CALENDAR_SHEET_CSV_URL);
+    if(!res.ok) throw new Error('fetch failed');
+    const rows = parseCSV(await res.text());
+    const dataRows = rows.slice(1).filter(r=>r.length>=2 && r[0]);
+    if(dataRows.length===0) throw new Error('empty');
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = dataRows.map(r=>{
+      const [date, tipoRaw, place] = r;
+      const isGame = /jogo|spiel/i.test(tipoRaw||'');
+      const tagLabel = isGame ? (currentLang==='de'?'Spiel':'Jogo') : (currentLang==='de'?'Training':'Treino');
+      const placeLabel = place || (currentLang==='de'?'Noch offen':'A definir');
+      return `<div class="cal-card"><span class="tag${isGame?' game':''}">${tagLabel}</span><div class="date">${date}</div><div class="place">${placeLabel}</div></div>`;
+    }).join('');
+    note.textContent = '';
+  }catch(e){
+    note.textContent = currentLang==='de'
+      ? 'Nicht möglich, den Kalender zu laden. Prüfe den Sheet-Link.'
+      : 'Não foi possível carregar o calendário. Verifique o link da planilha.';
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  setLang(currentLang);
+  updateCalc();
+  loadCalendar();
+});
 </script>
 
 </body>
