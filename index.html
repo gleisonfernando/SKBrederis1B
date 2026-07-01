@@ -252,7 +252,7 @@
   <div class="card-grid" style="margin-bottom:16px;">
     <div class="card card-gold" style="grid-column:1/-1;">
       <h3 style="color:var(--gold);" data-key="howpts_title">⚙️ Como funciona o sistema de pontos</h3>
-      <p data-key="howpts_desc">Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong data-key="howpts_rule">A cada 15 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.</p>
+      <p data-key="howpts_desc">Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong data-key="howpts_rule">A cada 7 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.</p>
     </div>
   </div>
 
@@ -404,7 +404,7 @@
         <div class="lbl" data-key="calc_pts_label">pontos acumulados</div>
       </div>
       <div class="progress-track"><div class="progress-fill" id="calcProgress"></div></div>
-      <div class="progress-caption"><span id="calcCaption">0 / 15</span><span data-key="calc_threshold">15 pts = €5</span></div>
+      <div class="progress-caption"><span id="calcCaption">0 / 7</span><span data-key="calc_threshold">7 pts = €5</span></div>
       <div class="calc-money">
         <div class="euro" id="calcMoney">€0</div>
         <div class="lbl" data-key="calc_money_label">em multas geradas</div>
@@ -627,8 +627,8 @@ const i18n={
     sec2_title:"📋 Regras & Pontos",
     sec2_desc:"Sabemos que quase todo mundo trabalha o dia inteiro antes de vir treinar — por isso o controle funciona por pontos. Cada infração soma pontos; só quando o acúmulo bate o limite é que vira multa.",
     howpts_title:"⚙️ Como funciona o sistema de pontos",
-    howpts_desc:'Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong>A cada 15 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.',
-    howpts_rule:"A cada 15 pontos acumulados, vira 1 multa de €5",
+    howpts_desc:'Cada infração abaixo vale de 1 a 3 pontos. Os pontos de cada jogador são somados ao longo do mês. <strong>A cada 7 pontos acumulados, vira 1 multa de €5</strong> revertida para o Caixa da Equipe. Reincidência grave (3ª vez na mesma regra) pode levar a afastamento, independente dos pontos.',
+    howpts_rule:"A cada 7 pontos acumulados, vira 1 multa de €5",
     r1_title:"Pontualidade",r1_desc:"Chegue 10 minutos antes do treino e dos jogos.",
     r1_i1:"Até 10 min de atraso",r1_i2:"Mais de 10 min",r1_i3:"Sem aviso prévio",
     r2_title:"Bolas e Material",r2_desc:"As bolas são patrimônio do clube. Todos ajudam a montar e recolher.",
@@ -653,7 +653,7 @@ const i18n={
     kasse_desc:"Todo o valor das multas vai para o Caixa da Equipe para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo",
     sec2b_title:"🧮 Calculadora de Pontos",
     sec2b_desc:'Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.',
-    calc_pts_label:"pontos acumulados",calc_threshold:"15 pts = €5",calc_money_label:"em multas geradas",
+    calc_pts_label:"pontos acumulados",calc_threshold:"7 pts = €5",calc_money_label:"em multas geradas",
     calc_reset:"Zerar simulação",
     calc_note:"* Simulação local, apenas para entender o sistema. O controle oficial é feito pelo Conselho da Equipe.",
     sec3_title:"🚨 Disciplina",sec3_desc:"Níveis disciplinares e consequências por infrações.",
@@ -714,8 +714,8 @@ const i18n={
     sec2_title:"📋 Regeln & Punkte",
     sec2_desc:"Wir wissen, dass fast alle den ganzen Tag arbeiten, bevor sie zum Training kommen — deshalb funktioniert die Kontrolle über Punkte. Jeder Verstoß summiert Punkte; erst wenn die Grenze erreicht ist, wird daraus eine Geldstrafe.",
     howpts_title:"⚙️ Wie das Punktesystem funktioniert",
-    howpts_desc:'Jeder Verstoß unten zählt 1 bis 3 Punkte. Die Punkte jedes Spielers werden über den Monat summiert. <strong>Alle 15 gesammelten Punkte werden zu 1 Geldstrafe von €5</strong>, die in die Mannschaftskasse fließt. Schwere Wiederholung (3. Mal bei derselben Regel) kann unabhängig von den Punkten zu einer Sperre führen.',
-    howpts_rule:"Alle 15 gesammelten Punkte werden zu 1 Geldstrafe von €5",
+    howpts_desc:'Jeder Verstoß unten zählt 1 bis 3 Punkte. Die Punkte jedes Spielers werden über den Monat summiert. <strong>Alle 7 gesammelten Punkte werden zu 1 Geldstrafe von €5</strong>, die in die Mannschaftskasse fließt. Schwere Wiederholung (3. Mal bei derselben Regel) kann unabhängig von den Punkten zu einer Sperre führen.',
+    howpts_rule:"Alle 7 gesammelten Punkte werden zu 1 Geldstrafe von €5",
     r1_title:"Pünktlichkeit",r1_desc:"Erscheine 10 Minuten vor Training und Spiel.",
     r1_i1:"Bis 10 Min. Verspätung",r1_i2:"Mehr als 10 Min.",r1_i3:"Ohne Vorankündigung",
     r2_title:"Bälle & Material",r2_desc:"Bälle sind Vereinseigentum. Alle helfen beim Auf- und Abbau.",
@@ -740,7 +740,7 @@ const i18n={
     kasse_desc:"Alle Bußgelder gehen in die Mannschaftskasse für: Abschlussgrillfeier · Teamveranstaltungen · Ausrüstung für die Gruppe",
     sec2b_title:"🧮 Punkterechner",
     sec2b_desc:'Simuliere deine Punktzahl: Klicke auf "+", sobald ein Verstoß passiert, und sieh in Echtzeit, wie nah du an einer Geldstrafe bist. Demo-Werkzeug — speichert keine Daten zwischen Besuchen.',
-    calc_pts_label:"gesammelte Punkte",calc_threshold:"15 Pkt = €5",calc_money_label:"an Bußgeldern erzeugt",
+    calc_pts_label:"gesammelte Punkte",calc_threshold:"7 Pkt = €5",calc_money_label:"an Bußgeldern erzeugt",
     calc_reset:"Simulation zurücksetzen",
     calc_note:"* Lokale Simulation, nur zum Verständnis des Systems. Die offizielle Kontrolle erfolgt durch den Mannschaftsrat.",
     sec3_title:"🚨 Disziplin",sec3_desc:"Disziplinarstufen und Konsequenzen bei Verstößen.",
@@ -831,11 +831,11 @@ function resetPts(){
 }
 function updateCalc(){
   document.getElementById('calcTotal').textContent=calcPoints;
-  const inCycle=calcPoints%15;
-  const pct=Math.min(100,(inCycle/15)*100);
+  const inCycle=calcPoints%7;
+  const pct=Math.min(100,(inCycle/7)*100);
   document.getElementById('calcProgress').style.width=(calcPoints>0 && inCycle===0?100:pct)+'%';
-  document.getElementById('calcCaption').textContent=(calcPoints>0 && inCycle===0?15:inCycle)+' / 15';
-  const fines=Math.floor(calcPoints/15);
+  document.getElementById('calcCaption').textContent=(calcPoints>0 && inCycle===0?7:inCycle)+' / 7';
+  const fines=Math.floor(calcPoints/7);
   document.getElementById('calcMoney').textContent='€'+(fines*5);
 }
 
