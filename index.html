@@ -557,7 +557,7 @@
     <p data-key="sec6_desc">Demonstração de como o check-in de presença e o ranking de disciplina vão funcionar. Esta tela é apenas visual — toques aqui não ficam salvos nem visíveis para outros jogadores.</p>
   </div>
 
-  <h3 style="margin-bottom:12px;color:var(--text);" data-key="checkin_subtitle">Check-in de hoje</h3>
+  <h3 style="margin-bottom:12px;color:var(--text);display:flex;align-items:center;gap:10px;" data-key="checkin_subtitle">Check-in de hoje <span id="checkinDateLabel" style="font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:500;color:var(--text-sec);"></span></h3>
   <div class="checkin-summary">
     <div class="checkin-stat"><div class="n" id="ciPresent" style="color:var(--green);">0</div><div class="l" data-key="ci_present">Presentes</div></div>
     <div class="checkin-stat"><div class="n" id="ciAbsent" style="color:var(--accent);">0</div><div class="l" data-key="ci_absent">Ausentes</div></div>
@@ -566,7 +566,7 @@
   <div class="checkin-list" id="checkinList"></div>
 
   <h3 style="margin:36px 0 12px;color:var(--text);" data-key="rank_subtitle">Ranking de disciplina (exemplo)</h3>
-  <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:14px;" data-key="rank_note">Quanto menos pontos acumulados no mês, melhor a posição. Dados de exemplo — o ranking real é calculado pelo Conselho da Equipe.</p>
+  <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:14px;" data-key="rank_note">Quanto menos pontos acumulados no mês, melhor a posição. Atualizado em tempo real — edite a planilha e o site reflete. 🟢 0–3 pts  🟡 4–6 pts  🔴 7+ pts (multa €5)</p>
   <div class="card" id="rankList"></div>
 </section>
 
@@ -686,7 +686,7 @@ const i18n={
     sec6_desc:"Demonstração de como o check-in de presença e o ranking de disciplina vão funcionar. Esta tela é apenas visual — toques aqui não ficam salvos nem visíveis para outros jogadores.",
     checkin_subtitle:"Check-in de hoje",ci_present:"Presentes",ci_absent:"Ausentes",ci_total:"Elenco",
     rank_subtitle:"Ranking de disciplina (exemplo)",
-    rank_note:"Quanto menos pontos acumulados no mês, melhor a posição. Dados de exemplo — o ranking real é calculado pelo Conselho da Equipe.",
+    rank_note:"Quanto menos pontos acumulados no mês, melhor a posição. Atualizado em tempo real — edite a planilha e o site reflete. 🟢 0–3 pts  🟡 4–6 pts  🔴 7+ pts (multa €5)",
     sec7_title:"📅 Calendário & Galeria",sec7_desc:"Estrutura pronta para o Gigio preencher com as datas e fotos reais da temporada.",
     cal_subtitle:"Próximos compromissos",tag_training:"Treino",tag_game:"Jogo",cal_placeholder:"A definir",
     gal_subtitle:"Galeria do elenco",
@@ -773,7 +773,7 @@ const i18n={
     sec6_desc:"Demonstration, wie der Anwesenheits-Check-in und die Disziplin-Rangliste funktionieren werden. Dieser Bildschirm ist nur visuell — Eingaben hier werden nicht gespeichert oder anderen Spielern angezeigt.",
     checkin_subtitle:"Check-in heute",ci_present:"Anwesend",ci_absent:"Abwesend",ci_total:"Kader",
     rank_subtitle:"Disziplin-Rangliste (Beispiel)",
-    rank_note:"Je weniger Punkte im Monat gesammelt, desto besser die Position. Beispieldaten — die echte Rangliste wird vom Mannschaftsrat berechnet.",
+    rank_note:"Je weniger Punkte im Monat gesammelt, desto besser die Position. Echtzeit-Daten — Tabelle bearbeiten, die Website aktualisiert sich. 🟢 0–3 Pkt  🟡 4–6 Pkt  🔴 7+ Pkt (Strafe €5)",
     sec7_title:"📅 Kalender & Galerie",sec7_desc:"Fertige Struktur, die Gigio mit den echten Terminen und Fotos der Saison füllen kann.",
     cal_subtitle:"Nächste Termine",tag_training:"Training",tag_game:"Spiel",cal_placeholder:"Noch offen",
     gal_subtitle:"Kadergalerie",
@@ -839,59 +839,109 @@ function updateCalc(){
   document.getElementById('calcMoney').textContent='€'+(fines*5);
 }
 
-/* ===== Check-in demo (in-memory only, resets on reload) ===== */
-const squad=['Lucas','Matheus','Pedro','Rafael','Bruno','Diego','Thiago','Felipe','Gabriel','André','Marcos','Vitor'];
-let checkinState={};
-squad.forEach(n=>checkinState[n]=null);
+/* ===== CONFIGURAÇÃO DAS PLANILHAS =====
+   As duas planilhas precisam ser publicadas na web (CSV) antes de funcionar.
+   PASSO A PASSO (fazer uma vez em cada planilha):
+   1. Abra a planilha no Google Sheets
+   2. Arquivo → Compartilhar → Publicar na web
+   3. Selecione a aba correta → formato CSV → clique em Publicar
+   4. O link gerado já está configurado abaixo — não precisa mudar nada.
+   ===================================== */
 
-function renderCheckin(){
+const CONFIRMACAO_CSV = "https://docs.google.com/spreadsheets/d/1P1H_w7maypjgh95gOJxV2wD9GArrxFDRuXFpKs6bdFI/export?format=csv&gid=2063074189";
+const PONTOS_CSV      = "https://docs.google.com/spreadsheets/d/1Wngz3OvhzzCsljfYDM1mr1tkdmtK5PhVYFLEZyLEwZo/export?format=csv&gid=0";
+
+function csvToRows(text){
+  return text.trim().split(/\r?\n/).map(l=>l.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
+}
+
+/* ===== Check-in via Confirmação sheet ===== */
+async function loadCheckin(){
   const list=document.getElementById('checkinList');
-  list.innerHTML='';
-  squad.forEach(name=>{
-    const row=document.createElement('div');
-    row.className='checkin-row';
-    const inSel=checkinState[name]==='in'?' sel':'';
-    const outSel=checkinState[name]==='out'?' sel':'';
-    row.innerHTML=`
-      <span class="checkin-name">${name}</span>
-      <div class="checkin-toggle">
-        <button class="checkin-opt in${inSel}" onclick="setCheckin('${name}','in')">${currentLang==='de'?'Da':'Presente'}</button>
-        <button class="checkin-opt out${outSel}" onclick="setCheckin('${name}','out')">${currentLang==='de'?'Fehlt':'Ausente'}</button>
-      </div>`;
-    list.appendChild(row);
-  });
-  updateCheckinSummary();
-}
-function setCheckin(name,val){
-  checkinState[name]=checkinState[name]===val?null:val;
-  renderCheckin();
-}
-function updateCheckinSummary(){
-  const vals=Object.values(checkinState);
-  document.getElementById('ciPresent').textContent=vals.filter(v=>v==='in').length;
-  document.getElementById('ciAbsent').textContent=vals.filter(v=>v==='out').length;
-  document.getElementById('ciTotal').textContent=squad.length;
+  list.innerHTML=`<p style="color:var(--text-sec);font-size:.9rem;padding:12px 0;">${currentLang==='de'?'Lade Anwesenheit…':'Carregando presenças…'}</p>`;
+  try{
+    const res=await fetch(CONFIRMACAO_CSV);
+    if(!res.ok) throw new Error();
+    const rows=csvToRows(await res.text());
+    // Find column indices from header
+    const hdr=rows[0].map(h=>h.toLowerCase());
+    const iData=hdr.findIndex(h=>h.includes('data'));
+    const iNome=hdr.findIndex(h=>h.includes('nome'));
+    const iConf=hdr.findIndex(h=>h.includes('confirm'));
+    const data=rows.slice(1).filter(r=>r[iData]&&r[iNome]);
+    // Get most recent date
+    const dates=[...new Set(data.map(r=>r[iData]))].sort().reverse();
+    const lastDate=dates[0]||'';
+    const dayRows=data.filter(r=>r[iData]===lastDate);
+    // Deduplicate by name (keep last entry)
+    const byName={};
+    dayRows.forEach(r=>{byName[r[iNome]]=r[iConf]});
+    const present=Object.values(byName).filter(v=>/sim|ja|yes/i.test(v)).length;
+    const absent=Object.values(byName).filter(v=>/nao|não|nein|no/i.test(v)).length;
+    document.getElementById('ciPresent').textContent=present;
+    document.getElementById('ciAbsent').textContent=absent;
+    document.getElementById('ciTotal').textContent=Object.keys(byName).length;
+    // Format date nicely
+    const dLabel=lastDate?new Date(lastDate).toLocaleDateString(currentLang==='de'?'de-AT':'pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'}):'';
+    document.getElementById('checkinDateLabel').textContent=dLabel?`(${dLabel})`:'';
+    list.innerHTML='';
+    // Sort: present first, then absent, then unknown
+    const sorted=Object.entries(byName).sort((a,b)=>{
+      const order=v=>/sim|ja|yes/i.test(v)?0:/nao|não|nein|no/i.test(v)?1:2;
+      return order(a[1])-order(b[1])||a[0].localeCompare(b[0]);
+    });
+    sorted.forEach(([name,conf])=>{
+      const isIn=/sim|ja|yes/i.test(conf);
+      const isOut=/nao|não|nein|no/i.test(conf);
+      const row=document.createElement('div');
+      row.className='checkin-row';
+      const dot=isIn?'🟢':isOut?'🔴':'⚪';
+      const label=isIn?(currentLang==='de'?'Anwesend':'Presente'):isOut?(currentLang==='de'?'Abwesend':'Ausente'):(currentLang==='de'?'Keine Antwort':'Sem resposta');
+      const color=isIn?'var(--green)':isOut?'var(--accent)':'var(--text-sec)';
+      row.innerHTML=`<span class="checkin-name">${dot} ${name}</span><span style="font-size:.8rem;color:${color};font-weight:700;">${label}</span>`;
+      list.appendChild(row);
+    });
+    if(sorted.length===0) list.innerHTML=`<p style="color:var(--text-sec);padding:12px 0;">${currentLang==='de'?'Noch keine Einträge für heute.':'Nenhum registro para hoje.'}</p>`;
+  }catch(e){
+    list.innerHTML=`<p style="color:var(--text-sec);font-size:.85rem;padding:12px 0;">${currentLang==='de'?'Planilha noch nicht veröffentlicht — siehe Anleitung.':'Planilha ainda não publicada na web — siga as instruções acima.'}</p>`;
+    document.getElementById('ciPresent').textContent='—';
+    document.getElementById('ciAbsent').textContent='—';
+    document.getElementById('ciTotal').textContent='—';
+  }
 }
 
-/* ===== Ranking demo (static sample data) ===== */
-const rankingSample=[
-  {name:'Rafael',pts:2},{name:'André',pts:3},{name:'Lucas',pts:4},
-  {name:'Gabriel',pts:5},{name:'Diego',pts:6},{name:'Pedro',pts:8},
-  {name:'Bruno',pts:9},{name:'Thiago',pts:11},{name:'Matheus',pts:12},
-  {name:'Felipe',pts:13}
-];
-function renderRanking(){
+/* ===== Ranking via Pontos sheet ===== */
+async function loadRanking(){
   const wrap=document.getElementById('rankList');
-  const sorted=[...rankingSample].sort((a,b)=>a.pts-b.pts);
-  const max=Math.max(...sorted.map(p=>p.pts),15);
-  wrap.innerHTML=sorted.map((p,i)=>`
-    <div class="rank-row">
-      <div class="rank-pos">${i+1}</div>
-      <div class="rank-name">${p.name}</div>
-      <div class="rank-bar-wrap"><div class="rank-bar" style="width:${(p.pts/max)*100}%"></div></div>
-      <div class="rank-pts">${p.pts} pt</div>
-    </div>`).join('');
+  wrap.innerHTML=`<p style="color:var(--text-sec);font-size:.9rem;padding:12px 0;">${currentLang==='de'?'Lade Rangliste…':'Carregando ranking…'}</p>`;
+  try{
+    const res=await fetch(PONTOS_CSV);
+    if(!res.ok) throw new Error();
+    const rows=csvToRows(await res.text());
+    const hdr=rows[0].map(h=>h.toLowerCase());
+    const iNome=hdr.findIndex(h=>h.includes('nome')||h.includes('name'));
+    const iPts=hdr.findIndex(h=>h.includes('pont')||h.includes('pkt')||h.includes('punkt'));
+    const data=rows.slice(1).filter(r=>r[iNome]).map(r=>({name:r[iNome],pts:parseInt(r[iPts])||0}));
+    const sorted=[...data].sort((a,b)=>a.pts-b.pts);
+    const max=Math.max(...sorted.map(p=>p.pts),7);
+    wrap.innerHTML=sorted.map((p,i)=>{
+      const pct=max>0?(p.pts/max)*100:0;
+      const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
+      const color=p.pts>=7?'var(--accent)':p.pts>=4?'var(--gold)':'var(--green)';
+      return `<div class="rank-row">
+        <div class="rank-pos">${medal}</div>
+        <div class="rank-name">${p.name}</div>
+        <div class="rank-bar-wrap"><div class="rank-bar" style="width:${pct}%;background:${color};"></div></div>
+        <div class="rank-pts" style="color:${color};">${p.pts} pt</div>
+      </div>`;
+    }).join('');
+  }catch(e){
+    wrap.innerHTML=`<p style="color:var(--text-sec);font-size:.85rem;padding:12px 0;">${currentLang==='de'?'Planilha noch nicht veröffentlicht — siehe Anleitung.':'Planilha ainda não publicada na web — siga as instruções acima.'}</p>`;
+  }
 }
+
+function renderCheckin(){ loadCheckin(); }
+function renderRanking(){ loadRanking(); }
 
 /* ===== Calendário via Google Sheets =====
    COMO CONFIGURAR (uma vez só):
