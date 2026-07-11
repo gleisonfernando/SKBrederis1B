@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SK Brederis — Conselho da Equipa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --r9:#7f0000;--r7:#c62828;--r5:#ffebee;--r1:#ffcdd2;
+  --w:#fff;--sur:#fafafa;--bdr:#e8e8e8;--bds:#d0d0d0;
+  --t1:#1a1d23;--t2:#4a5568;--t3:#8492a6;
+  --g7:#2e7d32;--g5:#e8f5e9;--y7:#f57f17;--y5:#fffde7;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:#f0f0f0;color:var(--t1);min-height:100vh}
+.header{background:linear-gradient(135deg,var(--r9),var(--r7));padding:20px 24px;color:#fff}
+.header h1{font-size:20px;font-weight:800;letter-spacing:.02em}
+.header p{font-size:12px;color:#ffcdd2;margin-top:2px}
+.login-wrap{max-width:400px;margin:60px auto;background:#fff;border-radius:16px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.login-wrap h2{font-size:18px;font-weight:700;margin-bottom:20px;color:var(--r7)}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--bds);border-radius:8px;font-size:14px;font-family:inherit;color:var(--t1);background:#fff;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--r7);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
+.btn{padding:11px 20px;border-radius:8px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-primary{background:var(--r7);color:#fff;width:100%}
+.btn-primary:hover{background:var(--r9)}
+.btn-sm{padding:6px 14px;font-size:13px}
+.btn-green{background:var(--g7);color:#fff}
+.btn-outline{background:#fff;color:var(--t1);border:1.5px solid var(--bds)}
+.main{max-width:900px;margin:0 auto;padding:24px 16px}
+.card{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:20px;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title .ico{font-size:18px}
+.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.badge-red{background:var(--r5);color:var(--r7)}
+.badge-yellow{background:var(--y5);color:var(--y7)}
+.badge-green{background:var(--g5);color:var(--g7)}
+.badge-gray{background:#f1f3f5;color:var(--t2)}
+.atleta-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.atleta-row:last-child{border-bottom:none}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--r7);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pts-display{font-size:22px;font-weight:800;min-width:40px;text-align:right}
+.infracoes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px}
+.infracao-btn{padding:8px 12px;border:1.5px solid var(--bdr);border-radius:8px;background:#fff;cursor:pointer;font-size:13px;font-family:inherit;text-align:left;transition:all .15s;display:flex;justify-content:space-between;align-items:center}
+.infracao-btn:hover{border-color:var(--r7);background:var(--r5)}
+.infracao-btn .pts{font-weight:700;color:var(--r7)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px}
+.alert-ok{background:var(--g5);color:#1b5e20;border:1px solid #a5d6a7}
+.alert-err{background:var(--r5);color:var(--r7);border:1px solid var(--r1)}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--bdr);font-size:13px}
+th{font-weight:600;color:var(--t2);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.hidden{display:none!important}
+.tab-bar{display:flex;gap:4px;margin-bottom:20px;background:#f1f3f5;padding:4px;border-radius:10px}
+.tab{flex:1;padding:8px;border:none;border-radius:8px;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--t2);transition:all .15s}
+.tab.active{background:#fff;color:var(--t1);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+@media(max-width:600px){.g2{grid-template-columns:1fr}.infracoes-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+  <div>
+    <h1 id="hdr-title">⚽ SK Brederis 1B — Conselho da Equipa</h1>
+    <p id="hdr-sub">Painel de gestão disciplinar · Saison 2026/2027</p>
+  </div>
+  <div style="display:flex;gap:4px;background:rgba(255,255,255,.1);border-radius:8px;padding:3px">
+    <button onclick="setLang('pt')" id="lb-pt" style="padding:5px 14px;border:none;border-radius:6px;background:rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit">🇧🇷 PT</button>
+    <button onclick="setLang('de')" id="lb-de" style="padding:5px 14px;border:none;border-radius:6px;background:transparent;color:rgba(255,255,255,.7);font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit">🇦🇹 DE</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-screen" class="login-wrap">
+  <h2 id="login-h2">🔐 Acesso do Conselho</h2>
+  <div id="login-err" class="alert alert-err hidden"></div>
+  <div class="form-group">
+    <label id="login-lbl">Senha / Passwort</label>
+    <input type="password" id="inp-senha" placeholder="••••••" autocomplete="off">
+  </div>
+  <button class="btn btn-primary" id="login-btn-el" onclick="doLogin()">Entrar</button>
+</div>
+
+<!-- MAIN PANEL -->
+<div id="main-panel" class="hidden">
+<div class="main">
+
+  <div class="tab-bar">
+    <button class="tab active" id="tab-infracoes" onclick="switchTab('infracoes')">➕ Registar Infração</button>
+    <button class="tab" id="tab-ranking" onclick="switchTab('ranking')">🏆 Ranking</button>
+    <button class="tab" id="tab-historico" onclick="switchTab('historico')">📋 Histórico</button>
+  </div>
+
+  <!-- TAB INFRAÇÕES -->
+  <div id="screen-infracoes">
+    <div class="card">
+      <div class="card-title"><span class="ico">👤</span>Selecionar atleta</div>
+      <div class="form-group">
+        <select id="sel-atleta" onchange="updateAtletaInfo()">
+          <option value="">— Selecionar atleta —</option>
+        </select>
+      </div>
+      <div id="atleta-info" class="hidden" style="background:#f8f8f8;border-radius:8px;padding:12px;margin-bottom:4px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="avatar" id="ai-avatar">--</div>
+          <div>
+            <div id="ai-nome" style="font-weight:600"></div>
+            <div id="ai-pts" style="font-size:13px;color:var(--t2)"></div>
+          </div>
+          <div id="ai-badge" style="margin-left:auto"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">⚡</span>Tipo de infração</div>
+      <div class="infracoes-grid" id="infracoes-grid"></div>
+      <div style="margin-top:14px;border-top:1px solid var(--bdr);padding-top:14px">
+        <label for="obs-text" style="font-size:12px;font-weight:600;color:var(--t2);display:block;margin-bottom:6px" id="obs-lbl">OBSERVAÇÃO (opcional)</label>
+        <textarea id="obs-text" rows="2" placeholder="Descreva o ocorrido..." style="resize:vertical"></textarea>
+      </div>
+    </div>
+
+    <div id="reg-msg" class="hidden"></div>
+    <button class="btn btn-primary" id="btn-registar" onclick="registarInfracao()" style="width:100%">
+      <span id="btn-reg-txt">Registar Infração</span>
+    </button>
+  </div>
+
+  <!-- TAB RANKING -->
+  <div id="screen-ranking" class="hidden">
+    <div class="card">
+      <div class="card-title"><span class="ico">🏆</span>Ranking Disciplinar — Mês Atual</div>
+      <div id="ranking-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ico">💰</span>Caixa da Equipa</div>
+      <div id="caixa-info"></div>
+    </div>
+  </div>
+
+  <!-- TAB HISTÓRICO -->
+  <div id="screen-historico" class="hidden">
+    <div class="card">
+      <div class="card-title"><span class="ico">📋</span>Histórico de Infrações</div>
+      <div class="form-group" style="max-width:200px">
+        <select id="filtro-atleta" onchange="renderHistorico()">
+          <option value="" id="hist-filter-opt">Todos os atletas</option>
+        </select>
+      </div>
+      <div id="historico-table"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+var LANG = "pt";
+
+var TR = {
+  pt: {
+    hdr_title:"⚽ SK Brederis 1B — Conselho da Equipa",
+    hdr_sub:"Painel de gestão disciplinar · Saison 2026/2027",
+    login_title:"🔐 Acesso do Conselho",
+    login_label:"Senha / Passwort",
+    login_btn:"Entrar",
+    login_err:"Senha incorreta.",
+    tab_reg:"➕ Registar Infração",
+    tab_rank:"🏆 Ranking",
+    tab_hist:"📋 Histórico",
+    sel_atleta:"— Selecionar atleta —",
+    tipo_label:"Tipo de infração",
+    obs_label:"OBSERVAÇÃO (opcional)",
+    obs_ph:"Descreva o ocorrido...",
+    reg_btn:"Registar Infração",
+    reg_ok:"✅ Infração registada com sucesso!",
+    reg_err_atleta:"Selecione um atleta.",
+    reg_err_tipo:"Selecione o tipo de infração.",
+    sending:"A registar...",
+    rank_title:"🏆 Ranking Disciplinar — Temporada",
+    caixa_title:"💰 Caixa da Equipa",
+    caixa_total:"Total acumulado esta temporada",
+    hist_title:"📋 Histórico de Infrações",
+    hist_filter:"Todos os atletas",
+    hist_empty:"Sem infrações registadas.",
+    hist_date:"Data",hist_atleta:"Atleta",hist_inf:"Infração",hist_cat:"Cat.",hist_pts:"Pts",hist_obs:"Obs.",
+    multas_lbl:"multa(s)",
+    pts_prox:"para próxima",
+    card_atleta:"Atleta selecionado",
+    card_pts:"pontos acumulados",
+  },
+  de: {
+    hdr_title:"⚽ SK Brederis 1B — Mannschaftsrat",
+    hdr_sub:"Disziplinverwaltung · Saison 2026/2027",
+    login_title:"🔐 Zugang des Mannschaftsrats",
+    login_label:"Passwort / Senha",
+    login_btn:"Anmelden",
+    login_err:"Falsches Passwort.",
+    tab_reg:"➕ Verstoß erfassen",
+    tab_rank:"🏆 Rangliste",
+    tab_hist:"📋 Verlauf",
+    sel_atleta:"— Spieler auswählen —",
+    tipo_label:"Art des Verstoßes",
+    obs_label:"BEMERKUNG (optional)",
+    obs_ph:"Vorfall beschreiben...",
+    reg_btn:"Verstoß erfassen",
+    reg_ok:"✅ Verstoß erfolgreich erfasst!",
+    reg_err_atleta:"Bitte Spieler auswählen.",
+    reg_err_tipo:"Bitte Art des Verstoßes auswählen.",
+    sending:"Wird erfasst...",
+    rank_title:"🏆 Disziplin-Rangliste — Saison",
+    caixa_title:"💰 Mannschaftskasse",
+    caixa_total:"Gesamtbetrag diese Saison",
+    hist_title:"📋 Verstoßverlauf",
+    hist_filter:"Alle Spieler",
+    hist_empty:"Keine Verstöße erfasst.",
+    hist_date:"Datum",hist_atleta:"Spieler",hist_inf:"Verstoß",hist_cat:"Kat.",hist_pts:"Pkt",hist_obs:"Bem.",
+    multas_lbl:"Strafe(n)",
+    pts_prox:"bis zur nächsten",
+    card_atleta:"Ausgewählter Spieler",
+    card_pts:"gesammelte Punkte",
+  }
+};
+
+function t(k){ return (TR[LANG]&&TR[LANG][k])||TR.pt[k]||k; }
+
+function setLang(lang){
+  LANG=lang;
+  document.getElementById('lb-pt').style.background=lang==='pt'?'rgba(255,255,255,.25)':'transparent';
+  document.getElementById('lb-pt').style.color='#fff';
+  document.getElementById('lb-de').style.background=lang==='de'?'rgba(255,255,255,.25)':'transparent';
+  document.getElementById('lb-de').style.color=lang==='de'?'#fff':'rgba(255,255,255,.7)';
+  document.getElementById('hdr-title').textContent=t('hdr_title');
+  document.getElementById('hdr-sub').textContent=t('hdr_sub');
+  // Update tabs
+  document.getElementById('tab-infracoes').textContent=t('tab_reg');
+  document.getElementById('tab-ranking').textContent=t('tab_rank');
+  document.getElementById('tab-historico').textContent=t('tab_hist');
+  // Update login
+  var loginTitle=document.querySelector('.login-wrap h2');
+  if(loginTitle) loginTitle.textContent=t('login_title');
+  var loginLabel=document.querySelector('.login-wrap label');
+  if(loginLabel) loginLabel.textContent=t('login_label');
+  var loginBtn=document.querySelector('.login-wrap .btn-primary');
+  if(loginBtn) loginBtn.textContent=t('login_btn');
+  // Update infraction panel
+  var selAtleta=document.getElementById('sel-atleta');
+  if(selAtleta&&selAtleta.options[0]) selAtleta.options[0].textContent=t('sel_atleta');
+  var obsLabel=document.querySelector('label[for="obs-text"]');
+  if(obsLabel) obsLabel.textContent=t('obs_label');
+  var obsInput=document.getElementById('obs-text');
+  if(obsInput) obsInput.placeholder=t('obs_ph');
+  var regBtn=document.getElementById('btn-registar');
+  if(regBtn){var txt=document.getElementById('btn-reg-txt');if(txt)txt.textContent=t('reg_btn');}
+  // Re-render current tab content
+  renderInfracoes();
+  renderRanking();
+  renderHistorico();
+}
+
+var SHEETS_URL = "SHEETS_URL_HERE";
+var SENHA = "conselho2026";
+
+// Infrações conforme cartilha
+var INFRACOES = [
+  // Pontualidade
+  {cat:"Pontualidade",desc:"Até 10 min de atraso",pts:1},
+  {cat:"Pontualidade",desc:"Mais de 10 min de atraso",pts:2},
+  {cat:"Pontualidade",desc:"Atraso sem aviso prévio",pts:3},
+  // Bolas e Material
+  {cat:"Bolas e Material",desc:"Não recolher bolas",pts:1},
+  {cat:"Bolas e Material",desc:"Material espalhado",pts:1},
+  {cat:"Bolas e Material",desc:"Chutar sem autorização pós-treino",pts:1},
+  {cat:"Bolas e Material",desc:"Danificar bola por negligência",pts:3},
+  // Vestiário
+  {cat:"Vestiário",desc:"Entrar com chuteiras sujas",pts:1},
+  {cat:"Vestiário",desc:"Deixar lixo / bagunça",pts:1},
+  // Substituições
+  {cat:"Substituições",desc:"Não cumprimentar colega",pts:1},
+  {cat:"Substituições",desc:"Não cumprimentar treinador",pts:1},
+  {cat:"Substituições",desc:"Ir ao vestiário sem autorização",pts:2},
+  // Banco de Reservas
+  {cat:"Banco",desc:"Uso excessivo do celular",pts:1},
+  {cat:"Banco",desc:"Comportamento negativo",pts:2},
+  // Árbitros
+  {cat:"Árbitros",desc:"Reclamação desnecessária",pts:1},
+  {cat:"Árbitros",desc:"Cartão por reclamação",pts:2},
+  {cat:"Árbitros",desc:"Insultar adversários",pts:3},
+  {cat:"Árbitros",desc:"Cartão vermelho antidesportivo",pts:3},
+  // Redes Sociais
+  {cat:"Redes Sociais",desc:"Post ofensivo sobre colegas/clube",pts:3},
+  // Jogos e Convocações
+  {cat:"Convocações",desc:"Não responder convocação",pts:1},
+  {cat:"Convocações",desc:"Falta sem justificativa",pts:3},
+  {cat:"Convocações",desc:"Atraso no ponto de encontro",pts:3},
+  // App
+  {cat:"App",desc:"Não confirmar presença até 12h",pts:1},
+  {cat:"App",desc:"Confirmar sem bem-estar",pts:1},
+  {cat:"App",desc:"Sem RPE pós-treino",pts:1},
+];
+
+var ATLETAS = [];
+var _pontos = {}; // {atleta_id: pts}
+var _historico = []; // [{data,atleta_id,nome,desc,pts,obs}]
+var _selectedInfracao = null;
+var _currentTab = "infracoes";
+
+// ── Login ─────────────────────────────────────────────────────────
+function doLogin(){
+  var v=document.getElementById("inp-senha").value;
+  if(v===SENHA){
+    document.getElementById("login-screen").classList.add("hidden");
+    document.getElementById("main-panel").classList.remove("hidden");
+    init();
+  } else {
+    var e=document.getElementById("login-err");
+    e.textContent="Senha incorreta."; e.classList.remove("hidden");
+  }
+}
+document.getElementById("inp-senha").addEventListener("keydown",function(e){if(e.key==="Enter")doLogin();});
+
+// ── Init ──────────────────────────────────────────────────────────
+function init(){
+  fetchAtletas();
+  renderInfracoes();
+}
+
+function fetchAtletas(){
+  if(!SHEETS_URL) return;
+  fetch(SHEETS_URL+"?acao=get_atletas")
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.status==="ok"&&res.atletas){
+        ATLETAS=res.atletas;
+        populateSelects();
+      }
+    }).catch(function(){});
+  fetchPontosHistorico();
+}
+
+function fetchPontosHistorico(){
+  if(!SHEETS_URL) return;
+  fetch(SHEETS_URL+"?acao=get_infracoes")
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.status==="ok"){
+        _historico=res.infracoes||[];
+        _pontos={};
+        _historico.forEach(function(inf){
+          _pontos[inf.atleta_id]=(_pontos[inf.atleta_id]||0)+Number(inf.pts);
+        });
+        renderRanking();
+        renderHistorico();
+        updateAtletaInfo();
+      }
+    }).catch(function(){});
+}
+
+function populateSelects(){
+  var sel=document.getElementById("sel-atleta");
+  var sel2=document.getElementById("filtro-atleta");
+  sel.innerHTML='<option value="">— Selecionar atleta —</option>';
+  sel2.innerHTML='<option value="">Todos os atletas</option>';
+  ATLETAS.forEach(function(a){
+    var o=new Option(a.nome+" ("+a.pos+")",a.id);
+    var o2=new Option(a.nome,a.id);
+    sel.add(o); sel2.add(o2);
+  });
+}
+
+// ── Infrações ─────────────────────────────────────────────────────
+function renderInfracoes(){
+  var grid=document.getElementById("infracoes-grid");
+  var cats={};
+  INFRACOES.forEach(function(inf,i){ if(!cats[inf.cat]) cats[inf.cat]=[]; cats[inf.cat].push({...inf,idx:i}); });
+  var html="";
+  Object.keys(cats).forEach(function(cat){
+    html+='<div style="grid-column:1/-1;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:6px">'+cat+'</div>';
+    cats[cat].forEach(function(inf){
+      var sel=_selectedInfracao===inf.idx;
+      html+='<button class="infracao-btn'+(sel?" selected":"")+'" onclick="selectInfracao('+inf.idx+')" style="'+(sel?"border-color:var(--r7);background:var(--r5);":"")+'">';
+      html+=inf.desc+'<span class="pts">+'+inf.pts+'</span></button>';
+    });
+  });
+  grid.innerHTML=html;
+}
+
+function selectInfracao(idx){
+  _selectedInfracao=idx;
+  renderInfracoes();
+}
+
+function updateAtletaInfo(){
+  var aid=document.getElementById("sel-atleta").value;
+  var box=document.getElementById("atleta-info");
+  if(!aid){box.classList.add("hidden");return;}
+  var a=ATLETAS.find(function(x){return x.id===aid;});
+  if(!a){box.classList.add("hidden");return;}
+  var pts=_pontos[aid]||0;
+  var multas=Math.floor(pts/7);
+  var restantes=pts%7;
+  document.getElementById("ai-avatar").textContent=a.nome.split(" ").map(function(x){return x[0];}).slice(0,2).join("").toUpperCase();
+  document.getElementById("ai-nome").textContent=a.nome;
+  document.getElementById("ai-pts").textContent=pts+" pontos acumulados · "+multas+" multa(s) · "+restantes+"/7 pts para próxima";
+  var cls=pts>=7?"badge-red":pts>=4?"badge-yellow":"badge-green";
+  var lbl=pts>=7?"⚠️ "+multas+" multa(s)":pts>=4?"🟡 Atenção":"🟢 OK";
+  document.getElementById("ai-badge").innerHTML='<span class="badge '+cls+'">'+lbl+'</span>';
+  box.classList.remove("hidden");
+}
+
+function registarInfracao(){
+  var aid=document.getElementById("sel-atleta").value;
+  if(!aid){alert(t("reg_err_atleta"));return;}
+  if(_selectedInfracao===null){alert(t("reg_err_tipo"));return;}
+  var inf=INFRACOES[_selectedInfracao];
+  var obs=document.getElementById("obs-text").value.trim();
+  var btn=document.getElementById("btn-registar");
+  var txt=document.getElementById("btn-reg-txt");
+  btn.disabled=true; txt.innerHTML='<span class="spinner"></span>A registar...';
+  var today=new Date().toISOString().slice(0,10);
+  var a=ATLETAS.find(function(x){return x.id===aid;});
+  var params="acao=save_infracao"
+    +"&atleta_id="+encodeURIComponent(aid)
+    +"&atleta_nome="+encodeURIComponent(a?a.nome:"")
+    +"&data="+today
+    +"&categoria="+encodeURIComponent(inf.cat)
+    +"&desc="+encodeURIComponent(inf.desc)
+    +"&pts="+inf.pts
+    +"&obs="+encodeURIComponent(obs);
+  fetch(SHEETS_URL+"?"+params)
+    .then(function(r){return r.json();})
+    .then(function(res){
+      btn.disabled=false; txt.textContent="Registar Infração";
+      var msg=document.getElementById("reg-msg");
+      if(res.status==="ok"){
+        msg.className="alert alert-ok"; msg.textContent=t('reg_ok');
+        msg.classList.remove("hidden");
+        _selectedInfracao=null;
+        document.getElementById("obs-text").value="";
+        renderInfracoes();
+        fetchPontosHistorico();
+        setTimeout(function(){msg.classList.add("hidden");},3000);
+      } else {
+        msg.className="alert alert-err"; msg.textContent="Erro: "+res.message;
+        msg.classList.remove("hidden");
+      }
+    }).catch(function(){
+      btn.disabled=false; txt.textContent="Registar Infração";
+      alert("Erro de ligação.");
+    });
+}
+
+// ── Ranking ───────────────────────────────────────────────────────
+function renderRanking(){
+  var sorted=ATLETAS.map(function(a){
+    return {a:a, pts:_pontos[a.id]||0};
+  }).sort(function(x,y){return x.pts-y.pts;});
+
+  var totalMultas=sorted.reduce(function(s,x){return s+Math.floor(x.pts/7);},0);
+  var totalEuros=totalMultas*5;
+
+  var html="";
+  sorted.forEach(function(item,i){
+    var pts=item.pts; var a=item.a;
+    var multas=Math.floor(pts/7);
+    var restantes=pts%7;
+    var cls=pts>=7?"badge-red":pts>=4?"badge-yellow":"badge-green";
+    var emoji=i===0?"🥇":i===1?"🥈":i===2?"🥉":""+(i+1)+".";
+    html+='<div class="atleta-row">';
+    html+='<span style="min-width:28px;font-size:14px">'+emoji+'</span>';
+    html+='<div class="avatar">'+a.nome.split(" ").map(function(x){return x[0];}).slice(0,2).join("").toUpperCase()+'</div>';
+    html+='<div style="flex:1"><div style="font-weight:500">'+a.nome+'</div>';
+    html+='<div style="font-size:11px;color:var(--t3)">'+multas+' multa(s) · '+restantes+'/7 para próxima</div></div>';
+    html+='<div class="pts-display" style="color:'+(pts>=7?"var(--r7)":pts>=4?"var(--y7)":"var(--g7)")+'">'+pts+'</div>';
+    html+='<span class="badge '+cls+'" style="margin-left:8px">'+(pts>=7?"€"+(multas*5):pts+"pts")+'</span>';
+    html+='</div>';
+  });
+  document.getElementById("ranking-list").innerHTML=html;
+
+  document.getElementById("caixa-info").innerHTML=
+    '<div style="display:flex;gap:20px;align-items:center">'
+    +'<div><div style="font-size:32px;font-weight:800;color:var(--g7)">€'+totalEuros+'</div>'
+    +'<div style="font-size:12px;color:var(--t3)">Total acumulado esta temporada</div></div>'
+    +'<div style="font-size:13px;color:var(--t2)">'+totalMultas+' multa(s) × €5</div></div>';
+}
+
+// ── Histórico ─────────────────────────────────────────────────────
+function renderHistorico(){
+  var filtro=document.getElementById("filtro-atleta").value;
+  var lista=filtro?_historico.filter(function(h){return h.atleta_id===filtro;}):_historico;
+  lista=lista.slice().reverse();
+  if(!lista.length){document.getElementById("historico-table").innerHTML='<p style="color:var(--t3);padding:16px 0">Sem infrações registadas.</p>';return;}
+  var html='<table><thead><tr><th>'+t('hist_date')+'</th><th>'+t('hist_atleta')+'</th><th>'+t('hist_inf')+'</th><th>'+t('hist_cat')+'</th><th>'+t('hist_pts')+'</th><th>'+t('hist_obs')+'</th></tr></thead><tbody>';
+  lista.forEach(function(h){
+    html+='<tr><td>'+h.data+'</td><td>'+h.nome+'</td><td>'+h.desc+'</td>'
+      +'<td><span class="badge badge-gray">'+h.categoria+'</span></td>'
+      +'<td><span class="badge badge-red">+'+h.pts+'</span></td>'
+      +'<td style="color:var(--t3);font-size:12px">'+(h.obs||"—")+'</td></tr>';
+  });
+  html+='</tbody></table>';
+  document.getElementById("historico-table").innerHTML=html;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────
+function switchTab(tab){
+  _currentTab=tab;
+  ["infracoes","ranking","historico"].forEach(function(t){
+    document.getElementById("screen-"+t).classList.toggle("hidden",t!==tab);
+    document.getElementById("tab-"+t).classList.toggle("active",t===tab);
+  });
+  if(tab==="ranking") renderRanking();
+  if(tab==="historico") renderHistorico();
+}
+</script>
+</body>
+</html>
