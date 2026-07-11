@@ -171,7 +171,6 @@
   <div class="tabs-container" id="tabsContainer">
     <button class="tab-btn active" data-tab="valores" onclick="switchTab('valores')"><span class="icon">⚽</span><span data-key="tab_valores">Valores</span></button>
     <button class="tab-btn" data-tab="regras" onclick="switchTab('regras')"><span class="icon">📋</span><span data-key="tab_regras">Regras & Pontos</span></button>
-    <button class="tab-btn" data-tab="calculadora" onclick="switchTab('calculadora')"><span class="icon">🧮</span><span data-key="tab_calc">Calculadora</span></button>
     <button class="tab-btn" data-tab="disciplina" onclick="switchTab('disciplina')"><span class="icon">🚨</span><span data-key="tab_disciplina">Disciplina</span></button>
     <button class="tab-btn" data-tab="grupo" onclick="switchTab('grupo')"><span class="icon">🤝</span><span data-key="tab_grupo">Grupo</span></button>
     <button class="tab-btn" data-tab="objetivos" onclick="switchTab('objetivos')"><span class="icon">🎯</span><span data-key="tab_objetivos">Objetivos</span></button>
@@ -220,31 +219,6 @@
   <div class="card-grid" style="margin-top:16px;"><div class="card card-green" style="grid-column:1/-1;"><h3 style="color:var(--green);" data-key="kasse_title">💰 Caixa da Equipe</h3><p data-key="kasse_desc">Todo o valor das multas vai para o <strong>Caixa da Equipe</strong> para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo</p></div></div>
 </section>
 
-<!-- SEÇÃO 2B: CALCULADORA -->
-<section id="calculadora" class="tab-content">
-  <div class="section-header"><h2 data-key="sec2b_title">🧮 Calculadora de Pontos</h2><p data-key="sec2b_desc">Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.</p></div>
-  <div class="calc-grid">
-    <div>
-      <div class="card-grid">
-        <div class="card"><h4 data-key="r1_title">Pontualidade</h4><div class="pts-row"><span data-key="r1_i1">Até 10 min de atraso</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r1_i2">Mais de 10 min</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div><div class="pts-row"><span data-key="r1_i3">Sem aviso prévio</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div></div>
-        <div class="card"><h4 data-key="r2_title">Bolas e Material</h4><div class="pts-row"><span data-key="r2_i1">Não recolher bolas</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r2_i4">Danificar bola por negligência</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div></div>
-        <div class="card"><h4 data-key="r3_title">Vestiário</h4><div class="pts-row"><span data-key="r3_i1">Chuteiras sujas / lixo / bagunça</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div></div>
-        <div class="card"><h4 data-key="r5_title">Banco de Reservas</h4><div class="pts-row"><span data-key="r5_i1">Celular durante o jogo</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r5_i3">Comportamento negativo</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div></div>
-        <div class="card"><h4 data-key="r6_title">Árbitros e Adversários</h4><div class="pts-row"><span data-key="r6_i3">Cartão por reclamação</span><button class="pts-add-btn" onclick="addPts(2)">+2</button></div><div class="pts-row"><span data-key="r6_i2">Insultar adversários</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div></div>
-        <div class="card"><h4 data-key="r8_title">Jogos e Convocações</h4><div class="pts-row"><span data-key="r8_i1">Não responder convocação</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r8_i2">Falta sem justificativa</span><button class="pts-add-btn" onclick="addPts(3)">+3</button></div></div>
-        <div class="card"><h4 data-key="r9_title">📲 App de Monitoramento</h4><div class="pts-row"><span data-key="r9_i1">Não confirmar presença até 12h</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r9_i2">Confirmar sem bem-estar</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div><div class="pts-row"><span data-key="r9_i3">Sem RPE pós-treino</span><button class="pts-add-btn" onclick="addPts(1)">+1</button></div></div>
-      </div>
-    </div>
-    <div class="calc-panel">
-      <div class="calc-total"><div class="num" id="calcTotal">0</div><div class="lbl" data-key="calc_pts_label">pontos acumulados</div></div>
-      <div class="progress-track"><div class="progress-fill" id="calcProgress"></div></div>
-      <div class="progress-caption"><span id="calcCaption">0 / 7</span><span data-key="calc_threshold">7 pts = €5</span></div>
-      <div class="calc-money"><div class="euro" id="calcMoney">€0</div><div class="lbl" data-key="calc_money_label">em multas geradas</div></div>
-      <button class="calc-reset" onclick="resetPts()" data-key="calc_reset">Zerar simulação</button>
-      <p class="calc-demo-note" data-key="calc_note">* Simulação local, apenas para entender o sistema. O controle oficial é feito pelo Conselho da Equipe.</p>
-    </div>
-  </div>
-</section>
 
 <!-- SEÇÃO 3: DISCIPLINA -->
 <section id="disciplina" class="tab-content">
@@ -368,11 +342,7 @@ const i18n={
     suspensao:"SUSPENSÃO",
     kasse_title:"💰 Caixa da Equipe",
     kasse_desc:"Todo o valor das multas vai para o Caixa da Equipe para: Churrasco de encerramento · Eventos e confraternizações · Material para o grupo",
-    sec2b_title:"🧮 Calculadora de Pontos",
-    sec2b_desc:'Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.',
-    calc_pts_label:"pontos acumulados",calc_threshold:"7 pts = €5",calc_money_label:"em multas geradas",
-    calc_reset:"Zerar simulação",
-    calc_note:"* Simulação local, apenas para entender o sistema. O controle oficial é feito pelo Conselho da Equipe.",
+    sec2b_desc:'Simule sua pontuação: clique em "+" sempre que uma infração acontecer e veja, em tempo real, quão perto você está de virar multa. Ferramenta demonstrativa — não salva dados entre acessos.',calc_threshold:"7 pts = €5",calc_money_label:"em multas geradas",
     sec3_title:"🚨 Disciplina",sec3_desc:"Níveis disciplinares e consequências por infrações.",
     d1_level:"Nível 1 / Stufe 1",d1_title:"Advertência Verbal",d1_desc:"Para casos leves ou primeira ocorrência.",
     d2_level:"Nível 2 / Stufe 2",d2_title:"Advertência Formal",d2_desc:"Registro interno junto à comissão técnica e ao capitão.",
@@ -455,11 +425,7 @@ const i18n={
     suspensao:"AUSSCHLUSS",
     kasse_title:"💰 Mannschaftskasse",
     kasse_desc:"Alle Bußgelder gehen in die Mannschaftskasse für: Abschlussgrillfeier · Teamveranstaltungen · Ausrüstung für die Gruppe",
-    sec2b_title:"🧮 Punkterechner",
-    sec2b_desc:'Simuliere deine Punktzahl: Klicke auf "+", sobald ein Verstoß passiert, und sieh in Echtzeit, wie nah du an einer Geldstrafe bist. Demo-Werkzeug — speichert keine Daten zwischen Besuchen.',
-    calc_pts_label:"gesammelte Punkte",calc_threshold:"7 Pkt = €5",calc_money_label:"an Bußgeldern erzeugt",
-    calc_reset:"Simulation zurücksetzen",
-    calc_note:"* Lokale Simulation, nur zum Verständnis des Systems. Die offizielle Kontrolle erfolgt durch den Mannschaftsrat.",
+    sec2b_desc:'Simuliere deine Punktzahl: Klicke auf "+", sobald ein Verstoß passiert, und sieh in Echtzeit, wie nah du an einer Geldstrafe bist. Demo-Werkzeug — speichert keine Daten zwischen Besuchen.',calc_threshold:"7 Pkt = €5",calc_money_label:"an Bußgeldern erzeugt",
     sec3_title:"🚨 Disziplin",sec3_desc:"Disziplinarstufen und Konsequenzen bei Verstößen.",
     d1_level:"Stufe 1",d1_title:"Mündliche Verwarnung",d1_desc:"Für leichte Fälle oder ersten Verstoß.",
     d2_level:"Stufe 2",d2_title:"Formelle Verwarnung",d2_desc:"Interner Eintrag bei Trainerteam und Kapitän.",
@@ -536,19 +502,6 @@ document.getElementById('hamburger').addEventListener('click',function(){
   document.getElementById('tabsContainer').classList.toggle('open');
 });
 
-/* ===== Calculadora de pontos ===== */
-let calcPoints=0;
-function addPts(n){ calcPoints+=n; updateCalc(); }
-function resetPts(){ calcPoints=0; updateCalc(); }
-function updateCalc(){
-  document.getElementById('calcTotal').textContent=calcPoints;
-  const inCycle=calcPoints%7;
-  const pct=Math.min(100,(inCycle/7)*100);
-  document.getElementById('calcProgress').style.width=(calcPoints>0 && inCycle===0?100:pct)+'%';
-  document.getElementById('calcCaption').textContent=(calcPoints>0 && inCycle===0?7:inCycle)+' / 7';
-  const fines=Math.floor(calcPoints/7);
-  document.getElementById('calcMoney').textContent='€'+(fines*5);
-}
 
 /* ===== SHEETS API — Ranking e Check-in ao vivo ===== */
 const SHEETS_API = "https://script.google.com/macros/s/AKfycbwT162iUxDz9UiI701WW2hWNP0eUMLaKghVApk_gwmofT2Gu0k1mC-I2VGKxQgUXkcm6w/exec";
