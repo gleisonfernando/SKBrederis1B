@@ -582,9 +582,7 @@ function renderRanking(){ loadRanking(); }
 const CALENDAR_SHEET_CSV_URL = "";
 
 function parseCSV(text){
-  return text.trim().split(/
-?
-/).map(line=>{
+  return text.trim().split(/\r?\n/).map(line=>{
     return line.split(',').map(c=>c.trim().replace(/^"|"$/g,''));
   });
 }
