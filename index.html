@@ -490,6 +490,9 @@ function switchTab(tabId){
   if(t){t.classList.add('active');document.getElementById('tabs').scrollIntoView({behavior:'smooth',block:'start'})}
   document.getElementById('tabsContainer').classList.remove('open');
   document.getElementById('hamburger').classList.remove('active');
+  // Load live data when switching to relevant tabs
+  if(tabId==='checkin'){ loadCheckin(); loadRanking(); }
+  if(tabId==='agenda'){ loadCalendar(); loadGaleria(); }
 }
 
 window.addEventListener('scroll',()=>{
@@ -504,7 +507,7 @@ document.getElementById('hamburger').addEventListener('click',function(){
 
 
 /* ===== SHEETS API — Ranking e Check-in ao vivo ===== */
-const SHEETS_API = "https://script.google.com/macros/s/AKfycbyIDlMZ9vCmyMvdFUeIp5PKSECjc82kTvMPrv5BFV8cgUD4Xh8IKmvVsX-fO6IkTr74/exec";
+const SHEETS_API = "https://script.google.com/macros/s/AKfycbwaKSHeAFKJSqqdAQIc4JaS5HqsPykjOJdXFRxrcfdfXi5GbmiVWxHrQCJBj8hLZW3m/exec";
 
 async function loadCheckin(){
   const list=document.getElementById('checkinList');
@@ -581,47 +584,68 @@ function renderRanking(){ loadRanking(); }
 
 const CALENDAR_SHEET_CSV_URL = "";
 
-function parseCSV(text){
-  return text.trim().split(/\r?\n/).map(line=>{
-    return line.split(',').map(c=>c.trim().replace(/^"|"$/g,''));
-  });
+async function loadCalendar(){
+  const grid=document.getElementById('calGrid');
+  const note=document.getElementById('calSourceNote');
+  grid.innerHTML='<p style="color:var(--text-sec);font-size:.9rem;padding:12px 0;">'+( currentLang==='de'?'Lade Termine…':'Carregando compromissos…')+'</p>';
+  try{
+    const res=await fetch(SHEETS_API+"?acao=get_calendario");
+    if(!res.ok) throw new Error();
+    const data=await res.json();
+    const eventos=(data.eventos||[]);
+    if(!eventos.length){
+      grid.innerHTML='<p style="color:var(--text-sec);font-size:.9rem;padding:12px 0;">'+(currentLang==='de'?'Noch keine Termine.':'Nenhum compromisso agendado.')+'</p>';
+      return;
+    }
+    // Sort by date ascending, show only future + today
+    const today=new Date().toISOString().slice(0,10);
+    const proximos=eventos.filter(e=>e.data>=today).sort((a,b)=>a.data.localeCompare(b.data));
+    const lista=proximos.length?proximos:eventos.sort((a,b)=>a.data.localeCompare(b.data));
+    grid.innerHTML=lista.map(e=>{
+      const isGame=/jogo|spiel/i.test(e.tipo);
+      const tagLabel=isGame?(currentLang==='de'?'Spiel':'Jogo'):(currentLang==='de'?'Training':'Treino');
+      const d=new Date(e.data+"T12:00:00");
+      const dateLabel=d.toLocaleDateString(currentLang==='de'?'de-AT':'pt-BR',{weekday:'short',day:'2-digit',month:'2-digit'});
+      const extras=[e.hora,e.adversario,e.local].filter(Boolean).join(' · ');
+      return `<div class="cal-card">
+        <span class="tag${isGame?' game':''}">${tagLabel}</span>
+        <div class="date">${dateLabel}</div>
+        ${extras?`<div class="place">${extras}</div>`:''}
+      </div>`;
+    }).join('');
+    if(note) note.textContent='';
+  }catch(e){
+    grid.innerHTML='<p style="color:var(--text-sec);font-size:.85rem;padding:12px 0;">'+(currentLang==='de'?'Fehler beim Laden.':'Erro ao carregar calendário.')+'</p>';
+  }
 }
 
-async function loadCalendar(){
-  const note = document.getElementById('calSourceNote');
-  if(!CALENDAR_SHEET_CSV_URL){
-    note.textContent = currentLang==='de'
-      ? 'Kalender noch nicht mit einer Google Sheet verbunden.'
-      : 'Calendário ainda não conectado a uma Google Sheet.';
-    return;
-  }
-  note.textContent = currentLang==='de' ? 'Lade Termine…' : 'Carregando compromissos…';
+async function loadGaleria(){
+  const grid=document.getElementById('galGrid');
+  if(!grid) return;
   try{
-    const res = await fetch(CALENDAR_SHEET_CSV_URL);
-    if(!res.ok) throw new Error('fetch failed');
-    const rows = parseCSV(await res.text());
-    const dataRows = rows.slice(1).filter(r=>r.length>=2 && r[0]);
-    if(dataRows.length===0) throw new Error('empty');
-    const grid = document.getElementById('calGrid');
-    grid.innerHTML = dataRows.map(r=>{
-      const [date, tipoRaw, place] = r;
-      const isGame = /jogo|spiel/i.test(tipoRaw||'');
-      const tagLabel = isGame ? (currentLang==='de'?'Spiel':'Jogo') : (currentLang==='de'?'Training':'Treino');
-      const placeLabel = place || (currentLang==='de'?'Noch offen':'A definir');
-      return `<div class="cal-card"><span class="tag${isGame?' game':''}">${tagLabel}</span><div class="date">${date}</div><div class="place">${placeLabel}</div></div>`;
-    }).join('');
-    note.textContent = '';
+    const res=await fetch(SHEETS_API+"?acao=get_galeria");
+    if(!res.ok) throw new Error();
+    const data=await res.json();
+    const fotos=(data.fotos||[]);
+    if(!fotos.length){
+      grid.innerHTML='<div class="gal-slot">📷</div>'.repeat(6);
+      return;
+    }
+    grid.innerHTML=fotos.map(f=>`
+      <div class="gal-slot" style="overflow:hidden;border:none;padding:0;background:#000">
+        <img src="${f.url}" alt="${f.legenda||'SK Brederis'}"
+          style="width:100%;height:100%;object-fit:cover;border-radius:12px"
+          onerror="this.parentNode.innerHTML='📷'">
+      </div>`).join('');
   }catch(e){
-    note.textContent = currentLang==='de'
-      ? 'Nicht möglich, den Kalender zu laden.'
-      : 'Não foi possível carregar o calendário.';
+    grid.innerHTML='<div class="gal-slot">📷</div>'.repeat(6);
   }
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
   setLang(currentLang);
-  updateCalc();
   loadCalendar();
+  loadGaleria();
 });
 </script>
 
